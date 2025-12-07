@@ -88,14 +88,14 @@ export function Header() {
             </div>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation with Auth inline */}
           <nav className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10",
+                  "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10",
                   isScrolled 
                     ? "text-foreground hover:text-primary hover:bg-muted" 
                     : "text-white/90 hover:text-white"
@@ -104,38 +104,38 @@ export function Header() {
                 {item.label}
               </a>
             ))}
-          </nav>
-
-          {/* Auth Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            {user ? (
-              <>
-                <span className={cn(
-                  "text-sm font-medium",
-                  isScrolled ? "text-foreground" : "text-white"
-                )}>
-                  {user.user_metadata?.full_name || user.email?.split('@')[0]}
-                </span>
+            
+            {/* Auth inline with nav */}
+            <div className="flex items-center gap-2 ml-4 pl-4 border-l border-white/20">
+              {user ? (
+                <>
+                  <span className={cn(
+                    "text-sm font-medium",
+                    isScrolled ? "text-foreground" : "text-white"
+                  )}>
+                    {user.user_metadata?.full_name || user.email?.split('@')[0]}
+                  </span>
+                  <Button
+                    variant={isScrolled ? "outline" : "heroOutline"}
+                    size="sm"
+                    onClick={handleLogout}
+                  >
+                    <LogOut className="w-4 h-4 mr-1" />
+                    Logout
+                  </Button>
+                </>
+              ) : (
                 <Button
-                  variant={isScrolled ? "outline" : "heroOutline"}
+                  variant={isScrolled ? "default" : "heroOutline"}
                   size="sm"
-                  onClick={handleLogout}
+                  onClick={() => navigate('/auth')}
                 >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
+                  <User className="w-4 h-4 mr-1" />
+                  Login
                 </Button>
-              </>
-            ) : (
-              <Button
-                variant={isScrolled ? "default" : "heroOutline"}
-                size="sm"
-                onClick={() => navigate('/auth')}
-              >
-                <User className="w-4 h-4 mr-2" />
-                Login / Sign Up
-              </Button>
-            )}
-          </div>
+              )}
+            </div>
+          </nav>
 
           {/* Mobile Menu Toggle */}
           <button
