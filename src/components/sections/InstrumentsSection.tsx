@@ -1,7 +1,7 @@
-import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { instruments } from '@/data/instruments';
+import { InstrumentCard } from '@/components/instruments/InstrumentCard';
+import { Button } from '@/components/ui/button';
 
 export function InstrumentsSection() {
   return (
@@ -28,40 +28,8 @@ export function InstrumentsSection() {
 
         {/* Instruments Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {instruments.map((instrument, index) => (
-            <Card 
-              key={instrument.name}
-              className="group overflow-hidden border-0 bg-card"
-            >
-              {/* Image Container */}
-              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5">
-                <img
-                  src={instrument.image}
-                  alt={instrument.fullName}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-semibold">
-                    {instrument.name}
-                  </span>
-                </div>
-              </div>
-
-              <CardContent className="pt-6">
-                <h3 className="font-bold text-lg mb-2">{instrument.fullName}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {instrument.capability}
-                </p>
-              </CardContent>
-
-              <CardFooter>
-                <Button variant="ghost" className="w-full group/btn">
-                  Learn More
-                  <ArrowRight size={16} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </CardFooter>
-            </Card>
+          {instruments.map((instrument) => (
+            <InstrumentCard key={instrument.id} instrument={instrument} />
           ))}
         </div>
 

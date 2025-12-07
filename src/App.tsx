@@ -7,6 +7,7 @@ import { RootLayout } from "@/components/layout/RootLayout";
 import HomePage from "./pages/Home";
 import AboutPage from "./pages/About";
 import InstrumentsPage from "./pages/Instruments";
+import InstrumentDetailPage from "./pages/InstrumentDetail";
 import ServicesPage from "./pages/Services";
 import FacilitiesPage from "./pages/Facilities";
 import PricingPage from "./pages/Pricing";
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/instruments" element={<InstrumentsPage />} />
+            <Route path="/instruments/:id" element={<InstrumentDetailPage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/facilities" element={<FacilitiesPage />} />
             <Route path="/pricing" element={<PricingPage />} />
