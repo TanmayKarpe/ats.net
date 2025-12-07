@@ -77,7 +77,7 @@ export function Header() {
                 Sophisticated Analytical Instrument Facility
               </p>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation with Auth inline */}
           <nav className="hidden lg:flex items-center gap-1">
