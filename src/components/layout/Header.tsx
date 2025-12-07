@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { supabase } from '@/integrations/supabase/client';
+import { User as SupabaseUser, Session } from '@supabase/supabase-js';
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -16,6 +19,9 @@ const navItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +30,26 @@ export function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+      }
+    );
+
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+  };
 
   return (
     <header
@@ -80,14 +106,35 @@ export function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <Button
-              variant={isScrolled ? "default" : "heroOutline"}
-              size="sm"
-            >
-              Submit Sample Request
-            </Button>
+            {user ? (
+              <>
+                <span className={cn(
+                  "text-sm font-medium",
+                  isScrolled ? "text-foreground" : "text-white"
+                )}>
+                  {user.user_metadata?.full_name || user.email?.split('@')[0]}
+                </span>
+                <Button
+                  variant={isScrolled ? "outline" : "heroOutline"}
+                  size="sm"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant={isScrolled ? "default" : "heroOutline"}
+                size="sm"
+                onClick={() => navigate('/auth')}
+              >
+                <User className="w-4 h-4 mr-2" />
+                Login / Sign Up
+              </Button>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -121,9 +168,17 @@ export function Header() {
                   {item.label}
                 </a>
               ))}
-              <Button variant="hero" size="lg" className="mt-4">
-                Submit Sample Request
-              </Button>
+              {user ? (
+                <Button variant="hero" size="lg" className="mt-4" onClick={handleLogout}>
+                  <LogOut className="w-4 h-4 mr-2" />
+                  Logout
+                </Button>
+              ) : (
+                <Button variant="hero" size="lg" className="mt-4" onClick={() => navigate('/auth')}>
+                  <User className="w-4 h-4 mr-2" />
+                  Login / Sign Up
+                </Button>
+              )}
             </div>
           </nav>
         )}
