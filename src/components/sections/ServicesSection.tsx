@@ -1,7 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
-import { serviceCards } from '@/data/services';
+import { services } from '@/data/services';
+import { ServiceCard } from '@/components/services/ServiceCard';
 
 export function ServicesSection() {
   return (
@@ -26,46 +24,8 @@ export function ServicesSection() {
 
         {/* Service Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {serviceCards.map((card, index) => (
-            <Card 
-              key={card.title}
-              className="group relative overflow-hidden border-0 bg-card hover:shadow-2xl transition-all duration-500"
-            >
-              {/* Gradient Top Border */}
-              <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${card.gradient}`} />
-
-              <CardHeader className="space-y-4">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                  <card.icon size={32} className="text-white" />
-                </div>
-                <div>
-                  <CardTitle className="text-2xl font-bold mb-1">{card.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground font-medium">{card.subtitle}</p>
-                </div>
-              </CardHeader>
-
-              <CardContent className="space-y-6">
-                <CardDescription className="text-base leading-relaxed">
-                  {card.description}
-                </CardDescription>
-
-                <ul className="space-y-3">
-                  {card.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3 text-sm">
-                      <CheckCircle2 size={16} className="text-secondary shrink-0" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-
-              <CardFooter>
-                <Button className="w-full group/btn" size="lg">
-                  {card.buttonText}
-                  <ArrowRight size={18} className="ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                </Button>
-              </CardFooter>
-            </Card>
+          {services.map((service) => (
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>

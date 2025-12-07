@@ -9,7 +9,9 @@ import AboutPage from "./pages/About";
 import InstrumentsPage from "./pages/Instruments";
 import InstrumentDetailPage from "./pages/InstrumentDetail";
 import ServicesPage from "./pages/Services";
+import ServiceDetailPage from "./pages/ServiceDetail";
 import FacilitiesPage from "./pages/Facilities";
+import FacilityDetailPage from "./pages/FacilityDetail";
 import PricingPage from "./pages/Pricing";
 import ContactPage from "./pages/Contact";
 import Auth from "./pages/Auth";
@@ -30,7 +32,9 @@ const App = () => (
             <Route path="/instruments" element={<InstrumentsPage />} />
             <Route path="/instruments/:id" element={<InstrumentDetailPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/services/:id" element={<ServiceDetailPage />} />
             <Route path="/facilities" element={<FacilitiesPage />} />
+            <Route path="/facilities/:id" element={<FacilityDetailPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Route>
@@ -44,3 +48,4 @@ const App = () => (
 );
 
 export default App;
+

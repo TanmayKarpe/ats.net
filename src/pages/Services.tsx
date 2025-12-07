@@ -1,4 +1,5 @@
-import { ServicesSection } from '@/components/sections/ServicesSection';
+import { services } from '@/data/services';
+import { ServiceCard } from '@/components/services/ServiceCard';
 
 export default function ServicesPage() {
   return (
@@ -9,7 +10,16 @@ export default function ServicesPage() {
           <p className="text-xl text-muted-foreground">Choose the access category that best fits your research needs.</p>
         </div>
       </div>
-      <ServicesSection />
+
+      <div className="py-16 bg-background">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 }
