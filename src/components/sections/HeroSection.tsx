@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import heroBg from '@/assets/hero-bg.jpg';
@@ -55,10 +56,12 @@ export function HeroSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-          <Button variant="hero" size="xl" className="group">
-            View Instruments
-            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link to="/instruments">
+            <Button variant="hero" size="xl" className="group">
+              View Instruments
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
           <Button variant="heroOutline" size="xl">
             Submit Sample Request
           </Button>
