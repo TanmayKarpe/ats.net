@@ -1,9 +1,28 @@
+import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    alert('Thank you for contacting us. We will get back to you soon.');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
   return (
     <div className="container mx-auto px-4 md:px-6 py-16">
       <div className="max-w-4xl mx-auto">
@@ -65,28 +84,33 @@ export default function ContactPage() {
           {/* Contact Form */}
           <Card>
             <CardContent className="pt-6">
-              <form className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Name</label>
-                  <Input placeholder="Your name" />
+                  <label htmlFor="name" className="text-sm font-medium mb-2 block">Name</label>
+                  <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Your name" required />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Email</label>
-                  <Input type="email" placeholder="your@email.com" />
+                  <label htmlFor="email" className="text-sm font-medium mb-2 block">Email</label>
+                  <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="your@email.com" required />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Subject</label>
-                  <Input placeholder="How can we help?" />
+                  <label htmlFor="subject" className="text-sm font-medium mb-2 block">Subject</label>
+                  <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} placeholder="How can we help?" required />
                 </div>
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Message</label>
+                  <label htmlFor="message" className="text-sm font-medium mb-2 block">Message</label>
                   <textarea 
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-3 py-2 border border-input rounded-md bg-background text-sm" 
                     rows={5}
                     placeholder="Your message here..."
+                    required
                   />
                 </div>
-                <Button className="w-full">Send Message</Button>
+                <Button type="submit" className="w-full">Send Message</Button>
               </form>
             </CardContent>
           </Card>

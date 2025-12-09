@@ -1,13 +1,13 @@
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getInstrumentById, Instrument } from '@/data/instruments';
+import { Button } from '@/components/ui/button';
 
 export default function InstrumentDetailPage() {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   if (!id) return <div className="container py-12">Instrument not found.</div>;
 
-  const instrument: Instrument | null = getInstrumentById(id);
+  const instrument: Instrument | undefined = getInstrumentById(id);
 
   if (!instrument) {
     return (
@@ -15,9 +15,9 @@ export default function InstrumentDetailPage() {
         <h2 className="text-2xl font-bold mb-4">Instrument not found</h2>
         <p className="mb-4">We couldn't find the instrument you're looking for.</p>
         <div className="flex gap-2">
-          <button onClick={() => navigate(-1)} className="btn">
-            Go Back
-          </button>
+          <Link to="/instruments">
+            <Button variant="outline">Go Back</Button>
+          </Link>
           <Link to="/instruments" className="btn btn-ghost">
             Browse Instruments
           </Link>
