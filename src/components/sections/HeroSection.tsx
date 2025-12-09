@@ -37,17 +37,18 @@ export function HeroSection() {
         </div>
 
         {/* Main Title */}
-        <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight animate-slide-up">
-          Sophisticated Analytical
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-emerald-300 to-teal-300">
-            Instrument Facility
-          </span>
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-slide-up">
+          ATS
         </h1>
+        <p className="text-2xl md:text-3xl text-white/90 font-semibold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-emerald-300 to-teal-300">
+            Analytical Testing Services
+          </span>
+        </p>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          KBCNMU Jalgaon – Your gateway to advanced analytical and characterization services.
+          From Kavytri Bahinabhai Chaurdri, Jalgaon – Your gateway to advanced analytical and characterization services.
           <br className="hidden md:block" />
           Empowering research with state-of-the-art instrumentation.
         </p>

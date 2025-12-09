@@ -26,7 +26,7 @@ export function AIAssistantSection() {
             </div>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              Ask SAIF
+              Ask ATS
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-emerald-300">
                 AI Assistant
@@ -34,7 +34,7 @@ export function AIAssistantSection() {
             </h2>
 
             <p className="text-lg text-white/80 leading-relaxed max-w-xl">
-              Get instant answers about instruments, sample preparation guidelines, tariffs, booking procedures, and more. Our AI assistant is trained on SAIF's complete knowledge base.
+              Get instant answers about instruments, sample preparation guidelines, tariffs, booking procedures, and more. Our AI assistant is trained on ATS's complete knowledge base.
             </p>
 
             <ul className="space-y-3">
@@ -66,7 +66,7 @@ export function AIAssistantSection() {
                   <Bot size={24} className="text-white" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white">SAIF AI Assistant</p>
+                  <p className="font-semibold text-white">ATS AI Assistant</p>
                   <p className="text-xs text-white/70 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
                     Online • Ready to help
@@ -83,7 +83,7 @@ export function AIAssistantSection() {
                   </div>
                   <div className="bg-card rounded-2xl rounded-tl-sm p-4 shadow-sm max-w-[80%]">
                     <p className="text-sm">
-                      Hello! 👋 I'm the SAIF AI Assistant. How can I help you today? You can ask me about:
+                      Hello! 👋 I'm the ATS AI Assistant. How can I help you today? You can ask me about:
                     </p>
                     <div className="flex flex-wrap gap-2 mt-3">
                       {['Instruments', 'Tariffs', 'Booking'].map((tag) => (

@@ -61,20 +61,20 @@ export function Header() {
                 ? "bg-primary text-primary-foreground" 
                 : "bg-white/20 text-white backdrop-blur-sm"
             )}>
-              SAIF
+              ATS
             </div>
             <div className="hidden sm:block">
               <p className={cn(
                 "font-bold text-sm transition-colors duration-300",
                 isScrolled ? "text-foreground" : "text-white"
               )}>
-                KBCNMU Jalgaon
+                Analytical Testing Services
               </p>
               <p className={cn(
                 "text-xs transition-colors duration-300",
                 isScrolled ? "text-muted-foreground" : "text-white/70"
               )}>
-                Sophisticated Analytical Instrument Facility
+                Kavytri Bahinabhai Chaurdri, Jalgaon
               </p>
             </div>
           </Link>

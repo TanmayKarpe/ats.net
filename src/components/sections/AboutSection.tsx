@@ -18,7 +18,7 @@ const aboutCards = [
   },
   {
     icon: Users,
-    title: 'Who Can Use SAIF',
+    title: 'Who Can Use ATS',
     description: 'Our facility is open to university researchers, external academic institutions, R&D laboratories, and industry partners. Special rates available for students and academic collaborations.',
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
@@ -46,10 +46,10 @@ export function AboutSection() {
             About Us
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Discover SAIF
+            Discover ATS
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A premier analytical facility empowering breakthrough research through advanced instrumentation and expert support.
+            A premier analytical testing facility empowering breakthrough research through advanced instrumentation and expert support.
           </p>
         </div>
 
