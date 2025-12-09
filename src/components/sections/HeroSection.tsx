@@ -49,7 +49,7 @@ export function HeroSection() {
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          From Kavytri Bahinabhai Chaurdri, Jalgaon – Your gateway to advanced analytical and characterization services.
+          From Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon – Your gateway to advanced analytical and characterization services.
           <br className="hidden md:block" />
           Empowering research with state-of-the-art instrumentation.
         </p>

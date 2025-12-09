@@ -79,7 +79,7 @@ export function Footer() {
               <div className="flex items-start gap-3">
                 <MapPin size={18} className="text-secondary mt-0.5 shrink-0" />
                 <p className="text-sm text-primary-foreground/80">
-                  Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon - 425001, Maharashtra, India
+                  Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon, Maharashtra – 425001
                 </p>
               </div>
               <div className="flex items-center gap-3">

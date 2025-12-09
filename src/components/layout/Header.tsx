@@ -74,7 +74,7 @@ export function Header() {
                 "text-xs transition-colors duration-300",
                 isScrolled ? "text-muted-foreground" : "text-white/70"
               )}>
-                Kavytri Bahinabhai Chaurdri, Jalgaon
+                Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon
               </p>
             </div>
           </Link>
