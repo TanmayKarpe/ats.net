@@ -13,7 +13,7 @@ export const newsItems = [
     type: 'Announcement',
     icon: Newspaper,
     title: 'New NMR Spectrometer Installation',
-    description: 'SAIF is pleased to announce the installation of a new 500 MHz NMR spectrometer with advanced capabilities.',
+    description: 'ATS is pleased to announce the installation of a new 500 MHz NMR spectrometer with advanced capabilities.',
     date: 'Nov 28, 2025',
     color: 'bg-accent',
   },

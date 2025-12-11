@@ -36,7 +36,7 @@ export const facilities: Facility[] = [
       'Polymers and composites',
       'Minerals and crystals'
     ],
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   },
   {
     id: 'technical-support',
@@ -63,7 +63,7 @@ export const facilities: Facility[] = [
       'Industrial products',
       'Environmental samples'
     ],
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   },
   {
     id: 'sample-preparation-labs',
@@ -91,7 +91,7 @@ export const facilities: Facility[] = [
       'Liquid and solution samples',
       'Delicate biological samples'
     ],
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   },
   {
     id: 'training-programs',
@@ -106,7 +106,7 @@ export const facilities: Facility[] = [
       'Customized training programs'
     ],
     majorInstruments: [
-      'All SAIF instruments available for training',
+      'All ATS instruments available for training',
       'Training lab with sample instruments',
       'Documentation and manuals',
       'Video tutorial materials'
@@ -117,7 +117,7 @@ export const facilities: Facility[] = [
       'Real research samples',
       'Quality control samples'
     ],
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   }
 ];
 

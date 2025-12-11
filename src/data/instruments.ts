@@ -40,7 +40,7 @@ export const instruments: Instrument[] = [
       'Max sample size: refer to facility guidelines'
     ],
     pricingNote: 'Hourly rates vary by user category. Contact for quote.',
-    contactEmail: 'saif@nmu.ac.in',
+    contactEmail: 'ats@nmu.ac.in',
     image: instrumentFesem
   },
   {
@@ -63,7 +63,7 @@ export const instruments: Instrument[] = [
       'Minimal moisture for transmission measurements'
     ],
     pricingNote: 'Standard per-scan or per-sample pricing applies.',
-    contactEmail: 'saif@nmu.ac.in',
+    contactEmail: 'ats@nmu.ac.in',
     image: instrumentFtir
   },
   {
@@ -85,7 +85,7 @@ export const instruments: Instrument[] = [
       'Powders (flat mount), thin films (as mounted), minimal preferred moisture'
     ],
     pricingNote: 'Pricing depends on scan time and analysis complexity.',
-    contactEmail: 'saif@nmu.ac.in',
+    contactEmail: 'ats@nmu.ac.in',
     image: instrumentXrd
   },
   {
@@ -108,7 +108,7 @@ export const instruments: Instrument[] = [
       'Clear, particle-free solutions preferred'
     ],
     pricingNote: 'Low-cost per-sample analysis; contact for bulk processing rates.',
-    contactEmail: 'saif@nmu.ac.in',
+    contactEmail: 'ats@nmu.ac.in',
     image: instrumentUvvis
   },
   {
@@ -131,7 +131,7 @@ export const instruments: Instrument[] = [
       'Dissolved in appropriate solvent, filtered as required'
     ],
     pricingNote: 'Sample prep and instrument time billed separately.',
-    contactEmail: 'saif@nmu.ac.in',
+    contactEmail: 'ats@nmu.ac.in',
     image: instrumentGcms
   },
   {
@@ -154,7 +154,7 @@ export const instruments: Instrument[] = [
       'Concentration dependent on nucleus and experiment'
     ],
     pricingNote: 'Pricing depends on experiment type and instrument time.',
-    contactEmail: 'saif@nmu.ac.in',
+    contactEmail: 'ats@nmu.ac.in',
     image: instrumentNmr
   }
 ];

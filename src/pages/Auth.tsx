@@ -200,9 +200,9 @@ const Auth = () => {
                 <Beaker className="w-6 h-6 text-white" />
               </div>
             </div>
-            <h1 className="text-2xl font-bold text-white">SAIF Portal</h1>
+            <h1 className="text-2xl font-bold text-white">ATS Portal</h1>
             <p className="text-white/80 text-sm mt-1">
-              Sophisticated Analytical Instrument Facility
+              Analytical Testing Services
             </p>
           </div>
 
@@ -347,7 +347,7 @@ const Auth = () => {
 
         {/* Footer */}
         <p className="text-center text-sm text-muted-foreground mt-6">
-          By continuing, you agree to SAIF's Terms of Service and Privacy Policy
+          By continuing, you agree to ATS's Terms of Service and Privacy Policy
         </p>
       </div>
     </div>

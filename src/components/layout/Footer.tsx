@@ -10,15 +10,15 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-secondary text-secondary-foreground flex items-center justify-center font-bold">
-                SAIF
+                ATS
               </div>
               <div>
-                <p className="font-bold">SAIF - KBCNMU</p>
+                <p className="font-bold">ATS - KBCNMU</p>
                 <p className="text-sm text-primary-foreground/70">Jalgaon</p>
               </div>
             </div>
             <p className="text-sm text-primary-foreground/80 leading-relaxed">
-              Sophisticated Analytical Instrument Facility providing world-class analytical and characterization services for research and industry.
+              Analytical Testing Services providing world-class analytical and characterization services for research and industry.
             </p>
             <div className="flex gap-3 pt-2">
               <a href="#" className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors">
@@ -84,8 +84,8 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-secondary shrink-0" />
-                <a href="mailto:saif@nmu.ac.in" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
-                  saif@nmu.ac.in
+                <a href="mailto:ats@nmu.ac.in" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
+                  ats@nmu.ac.in
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -104,7 +104,7 @@ export function Footer() {
         <div className="container mx-auto px-4 md:px-6 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-primary-foreground/60 text-center md:text-left">
-              © 2025 SAIF - KBCNMU Jalgaon. All rights reserved.
+              © 2025 ATS - KBCNMU Jalgaon. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <a href="#" className="text-sm text-primary-foreground/60 hover:text-secondary transition-colors">

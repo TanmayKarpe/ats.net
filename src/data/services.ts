@@ -31,7 +31,7 @@ export const services: Service[] = [
     ],
     pricingNote: 'Subsidized tariff rates available for all KBCNMU students and faculty members',
     turnaroundTime: '3-5 working days',
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   },
   {
     id: 'external-academic',
@@ -53,7 +53,7 @@ export const services: Service[] = [
     ],
     pricingNote: 'Competitive academic rates with bulk discounts available for large projects',
     turnaroundTime: '5-7 working days',
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   },
   {
     id: 'industry-rd-labs',
@@ -76,7 +76,7 @@ export const services: Service[] = [
     ],
     pricingNote: 'Premium rates with express processing, confidential handling, and custom packages available',
     turnaroundTime: '1-3 working days (express available)',
-    contactEmail: 'saif@nmu.ac.in'
+    contactEmail: 'ats@nmu.ac.in'
   }
 ];
 

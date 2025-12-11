@@ -58,8 +58,8 @@ export default function ContactPage() {
                   <Mail className="text-primary shrink-0" size={24} />
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
-                    <a href="mailto:saif@nmu.ac.in" className="text-primary hover:underline">
-                      saif@nmu.ac.in
+                    <a href="mailto:ats@nmu.ac.in" className="text-primary hover:underline">
+                      ats@nmu.ac.in
                     </a>
                   </div>
                 </div>
