@@ -1,0 +1,2 @@
+    "@testing-library/jest-dom": "^6.9.1",
+    "vitest": "^4.0.15"

@@ -1,0 +1,2 @@
+src/__tests__/header.test.tsx
+src/__tests__/admin-auth.test.tsx

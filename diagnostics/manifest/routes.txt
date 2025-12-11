@@ -1,0 +1,40 @@
+src/components/layout/Header.tsx:import { useNavigate, Link } from 'react-router-dom';
+src/components/layout/Header.tsx:  const navigate = useNavigate();
+src/components/NavLink.tsx:      <RouterNavLink
+src/__tests__/header.test.tsx:import { BrowserRouter } from 'react-router-dom';
+src/__tests__/header.test.tsx:      <BrowserRouter>
+src/__tests__/header.test.tsx:      </BrowserRouter>
+src/App.tsx:import { BrowserRouter, Routes, Route } from "react-router-dom";
+src/App.tsx:      <BrowserRouter>
+src/App.tsx:          <Routes>
+src/App.tsx:            <Route element={<RootLayout />}>
+src/App.tsx:              <Route path="/" element={<HomePage />} />
+src/App.tsx:              <Route path="/about" element={<AboutPage />} />
+src/App.tsx:              <Route path="/instruments" element={<InstrumentsPage />} />
+src/App.tsx:              <Route path="/instruments/:id" element={<InstrumentDetailPage />} />
+src/App.tsx:              <Route path="/services" element={<ServicesPage />} />
+src/App.tsx:              <Route path="/services/:id" element={<ServiceDetailPage />} />
+src/App.tsx:              <Route path="/facilities" element={<FacilitiesPage />} />
+src/App.tsx:              <Route path="/facilities/:id" element={<FacilityDetailPage />} />
+src/App.tsx:              <Route path="/leadership/:id" element={<LeaderDetailPage />} />
+src/App.tsx:              <Route path="/pricing" element={<PricingPage />} />
+src/App.tsx:              <Route path="/contact" element={<ContactPage />} />
+src/App.tsx:            <Route path="/auth" element={<Auth />} />
+src/App.tsx:            {/* Admin Routes */}
+src/App.tsx:            <Route path="/admin/login" element={<AdminLoginPage />} />
+src/App.tsx:            <Route
+src/App.tsx:            <Route path="*" element={<NotFound />} />
+src/App.tsx:          </Routes>
+src/App.tsx:      </BrowserRouter>
+src/pages/FacilityDetail.tsx:import { Link, useParams, useNavigate } from 'react-router-dom';
+src/pages/FacilityDetail.tsx:  const navigate = useNavigate();
+src/pages/Auth.tsx:import { useNavigate } from "react-router-dom";
+src/pages/Auth.tsx:  const navigate = useNavigate();
+src/pages/ServiceDetail.tsx:import { Link, useParams, useNavigate } from 'react-router-dom';
+src/pages/ServiceDetail.tsx:  const navigate = useNavigate();
+src/pages/LeaderDetailPage.tsx:import { Link, useParams, useNavigate } from 'react-router-dom';
+src/pages/LeaderDetailPage.tsx:  const navigate = useNavigate();
+src/pages/admin/AdminDashboard.tsx:import { useNavigate } from 'react-router-dom';
+src/pages/admin/AdminDashboard.tsx:  const navigate = useNavigate();
+src/pages/admin/AdminLoginPage.tsx:import { useNavigate } from 'react-router-dom';
+src/pages/admin/AdminLoginPage.tsx:  const navigate = useNavigate();

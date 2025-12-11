@@ -1,0 +1,43 @@
+{
+  "repo": [
+    "[core]",
+    "\trepositoryformatversion = 0"
+  ],
+  "name": "vite_react_shadcn_ts",
+  "version": "0.0.0",
+  "defaultBranch": "main",
+  "nodeEngine": null,
+  "topLevelDirs": [
+    ".env",
+    ".env.example",
+    ".env.local",
+    ".gitignore",
+    "ADMIN_IMPLEMENTATION.md",
+    "ADMIN_LOGIN_PR_SUMMARY.md",
+    "README.md",
+    "bun.lockb",
+    "components.json",
+    "diagnostics",
+    "dist",
+    "docs",
+    "eslint.config.js",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "postcss.config.js",
+    "public",
+    "screenshots",
+    "src",
+    "supabase",
+    "tailwind.config.ts",
+    "tsconfig.app.json",
+    "tsconfig.json",
+    "tsconfig.node.json",
+    "vite.config.ts"
+  ],
+  "counts": {},
+  "hasTypeScript": true,
+  "hasViteConfig": true,
+  "hasTailwindConfig": true,
+  "hasEslint": false
+}

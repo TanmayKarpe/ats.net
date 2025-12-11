@@ -1,0 +1,5 @@
+ M package-lock.json
+ M package.json
+ M src/components/layout/Header.tsx
+?? diagnostics/
+?? src/__tests__/header.test.tsx

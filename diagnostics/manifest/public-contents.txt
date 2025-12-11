@@ -1,0 +1,10 @@
+total 1748
+drwxrwxrwx+  2 codespace root   4096 Dec 11 19:08 .
+drwxrwxrwx+ 11 codespace root   4096 Dec 11 20:21 ..
+-rw-rw-rw-   1 codespace root  20373 Dec 11 19:08 favicon.ico
+-rw-rw-rw-   1 codespace root 582997 Dec 11 19:08 governor.png
+-rw-rw-rw-   1 codespace root   3253 Dec 11 19:08 placeholder.svg
+-rw-rw-rw-   1 codespace root 434215 Dec 11 19:08 pro-vc.png
+-rw-rw-rw-   1 codespace root 386658 Dec 11 19:08 registrar.png
+-rw-rw-rw-   1 codespace root    160 Dec 11 19:08 robots.txt
+-rw-rw-rw-   1 codespace root 336934 Dec 11 19:08 vice-chancellor.png

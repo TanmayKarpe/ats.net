@@ -1,0 +1,10 @@
+23e2390943401c15ba693eae79331d8cdced113f | Tannykk23 | Thu Dec 11 19:56:38 2025 +0000 | feat(admin): remove offline banner, add login button
+d1043eaf381cefdd119608b796875e6cc0e888d7 | TanmayKarpe | Tue Dec 9 20:25:39 2025 +0000 | Update authentication flow and leader components
+907c123186578e3540b03e313b00252a2f39f2ce | TanmayKarpe | Tue Dec 9 18:47:57 2025 +0000 | Update leader image paths to site-root PNGs
+f124aa1d94f94cf9a2bf787375c502399322e7ee | TanmayKarpe | Tue Dec 9 23:55:00 2025 +0530 | Add files via upload
+ea2a0184e7f50aadd2258937e2cb7a1808589932 | TanmayKarpe | Tue Dec 9 23:38:20 2025 +0530 | Add leaders.ts file with initial content
+aad2ecdfd3c8ae963ecffbf6f5c95cdba2a89cdd | TanmayKarpe | Tue Dec 9 17:59:29 2025 +0000 | Implement real leadership system with official university data
+42cc8bd40ad05aaf4344f609af40276571eda1f6 | TanmayKarpe | Tue Dec 9 17:39:03 2025 +0000 | Standardize university name globally: Kavytri Bahinabhai Chaurdri → Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon
+e23656fd8db66b4fc74120f90b02993e1d7456d2 | TanmayKarpe | Tue Dec 9 17:33:07 2025 +0000 | Remove unused Index.tsx dead code
+0ceb027cb1c367b7f527bf434fe998d3bd78ac1f | TanmayKarpe | Tue Dec 9 17:31:08 2025 +0000 | Fix must-fix issues: InstrumentDetail button styling, Facilities branding, Contact form functionality
+9a0b01b0ced6fe7a057eb11609084c15592ac08f | TanmayKarpe | Tue Dec 9 17:20:20 2025 +0000 | Reorder sections: Move LeadershipSection above AboutSection in Home and About pages

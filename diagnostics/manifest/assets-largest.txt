@@ -1,0 +1,7 @@
+4.0K	public/placeholder.svg
+4.0K	public/robots.txt
+20K	public/favicon.ico
+332K	public/vice-chancellor.png
+380K	public/registrar.png
+428K	public/pro-vc.png
+572K	public/governor.png

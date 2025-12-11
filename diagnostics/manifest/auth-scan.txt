@@ -1,0 +1,24 @@
+src/components/auth/RequireAdmin.tsx:6:interface RequireAdminProps {
+src/components/auth/RequireAdmin.tsx:10:export const RequireAdmin: React.FC<RequireAdminProps> = ({ children }) => {
+src/__tests__/header.test.tsx:4:import { AdminAuthProvider } from '@/contexts/AdminAuthContext';
+src/__tests__/header.test.tsx:18:        <AdminAuthProvider>
+src/__tests__/header.test.tsx:20:        </AdminAuthProvider>
+src/__tests__/admin-auth.test.tsx:11: * 1. login() stores correct auth state in localStorage (ats_admin_auth_v1)
+src/__tests__/admin-auth.test.tsx:14: * 4. RequireAdmin redirects to /admin/login if not authenticated
+src/__tests__/admin-auth.test.tsx:15: * 5. RequireAdmin renders children if authenticated
+src/App.tsx:6:import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+src/App.tsx:7:import { RequireAdmin } from "@/components/auth/RequireAdmin";
+src/App.tsx:33:        <AdminAuthProvider>
+src/App.tsx:55:                <RequireAdmin>
+src/App.tsx:57:                </RequireAdmin>
+src/App.tsx:63:        </AdminAuthProvider>
+src/contexts/AdminAuthContext.tsx:18:const AUTH_STORAGE_KEY = 'ats_admin_auth_v1';
+src/contexts/AdminAuthContext.tsx:20:export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+src/contexts/AdminAuthContext.tsx:27:    const stored = localStorage.getItem(AUTH_STORAGE_KEY);
+src/contexts/AdminAuthContext.tsx:42:    const expectedKey = import.meta.env.VITE_ADMIN_DEV_KEY;
+src/contexts/AdminAuthContext.tsx:45:      console.warn('VITE_ADMIN_DEV_KEY not configured in environment variables');
+src/contexts/AdminAuthContext.tsx:57:      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newAuthState));
+src/contexts/AdminAuthContext.tsx:80:    throw new Error('useAdminAuth must be used within AdminAuthProvider');
+src/pages/admin/AdminLoginPage.tsx:21:  // Check if VITE_ADMIN_DEV_KEY is configured
+src/pages/admin/AdminLoginPage.tsx:23:    const hasDevKey = import.meta.env.VITE_ADMIN_DEV_KEY;
+src/pages/admin/AdminLoginPage.tsx:166:                    Set VITE_ADMIN_DEV_KEY in .env.local or check docs/admin-dev-setup.md
