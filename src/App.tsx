@@ -41,7 +41,7 @@ const App = () => (
       <BrowserRouter>
         <AdminAuthProvider>
           <Routes>
-            <Route element={<RootLayout />}>
+            <Route path="/" element={<RootLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/instruments" element={<InstrumentsPage />} />
