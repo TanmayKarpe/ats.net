@@ -157,27 +157,75 @@ export function Header() {
           </button>
         </div>
 
-              {!supabase ? (
-                <div className="text-center text-yellow-500 p-4">
-                  Online service temporarily unavailable
-                </div>
-              ) : user ? (
-                <Button variant="hero" size="lg" className="mt-4" onClick={handleLogout}>
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Logout
-                </Button>
-              ) : (
-                <>
-                  <Button variant="hero" size="lg" className="mt-4" onClick={() => navigate('/auth')}>
-                    <User className="w-4 h-4 mr-2" />
-                    Login / Sign Up
-                  </Button>
-                  <Button variant="outline" size="lg" className="mt-2 w-full" onClick={() => navigate('/admin/login')}>
-                    <Settings className="w-4 h-4 mr-2" />
-                    Admin Portal
-                  </Button>
-                </>
-              )}
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <nav className="lg:hidden mt-4 pb-4 border-t border-white/10">
+            <div className="flex flex-col gap-2">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className={cn(
+                    "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10",
+                    isScrolled 
+                      ? "text-foreground hover:text-primary hover:bg-muted" 
+                      : "text-white/90 hover:text-white"
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+
+              {/* Mobile Auth Section */}
+              <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-white/10">
+                {user ? (
+                  <>
+                    <span className={cn(
+                      "text-sm font-medium px-3 py-2",
+                      isScrolled ? "text-foreground" : "text-white"
+                    )}>
+                      {user.user_metadata?.full_name || user.email?.split('@')[0]}
+                    </span>
+                    <Button
+                      variant={isScrolled ? "outline" : "heroOutline"}
+                      size="sm"
+                      onClick={handleLogout}
+                      className="w-full justify-start"
+                    >
+                      <LogOut className="w-4 h-4 mr-2" />
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant={isScrolled ? "default" : "heroOutline"}
+                      size="sm"
+                      onClick={() => {
+                        navigate('/auth');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full justify-start"
+                    >
+                      <User className="w-4 h-4 mr-2" />
+                      Login
+                    </Button>
+                    <Button
+                      variant={isScrolled ? "outline" : "heroOutline"}
+                      size="sm"
+                      onClick={() => {
+                        navigate('/admin/login');
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full justify-start"
+                    >
+                      <Settings className="w-4 h-4 mr-2" />
+                      Admin Portal
+                    </Button>
+                  </>
+                )}
+              </div>
             </div>
           </nav>
         )}
