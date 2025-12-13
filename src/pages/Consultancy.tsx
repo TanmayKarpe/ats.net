@@ -5,12 +5,22 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card } from '@/components/ui/card'
 import { Mail } from 'lucide-react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger, DialogClose } from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { createEnquiry } from '@/services/consultancyEnquiries'
 
 export default function ConsultancyPage() {
   const [departments, setDepartments] = useState<any[]>([])
   const [selected, setSelected] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [formName, setFormName] = useState('')
+  const [formEmail, setFormEmail] = useState('')
+  const [formMessage, setFormMessage] = useState('')
+  const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -23,12 +33,36 @@ export default function ConsultancyPage() {
 
   const dept = departments.find((d) => d.slug === selected)
 
+  const [pendingDept, setPendingDept] = useState<any | null>(null)
   const handleContact = (dept: any) => {
-    if (!dept) return
-    const subject = `Consultancy Inquiry - ${dept.name}`
-    const body = `Hello ${dept.name} team,%0D%0A%0D%0AMy name is %5BYour%20Name%5D from %5BOrganization%5D. I would like to inquire about consultancy services regarding %5Bbrief%20description%5D.%0D%0A%0D%0AProposed timeline: %5Btimeline%5D%0D%0ABudget (optional): %5Bbudget%5D%0D%0A%0D%0APlease let me know the next steps and availability.%0D%0A%0D%0ABest regards,%0D%0A%5BYour%20Name%5D%0D%0A%5BContact%20Information%5D`
-    const mailto = `mailto:${dept.coordinator_email}?subject=${encodeURIComponent(subject)}&body=${body}`
-    window.location.href = mailto
+    setPendingDept(dept)
+    setFormName('')
+    setFormEmail('')
+    setFormMessage(`I would like to inquire about consultancy services for ${dept.name}.`)
+    setIsDialogOpen(true)
+  }
+
+  const submitEnquiryAndOpenMailto = async () => {
+    if (!pendingDept) return
+    setSubmitting(true)
+    setError(null)
+    try {
+      await createEnquiry({
+        department_id: pendingDept.id,
+        user_name: formName || 'Anonymous',
+        user_email: formEmail || '',
+        message: formMessage || '',
+        status: 'new'
+      })
+
+      const subject = `Consultancy Inquiry - ${pendingDept.name}`
+      const body = `Hello ${pendingDept.name} team,%0D%0A%0D%0AMy name is ${encodeURIComponent(formName || '[Your Name]')}%20from%20${encodeURIComponent('[Organization]')}. %0D%0A%0D%0A${encodeURIComponent(formMessage || '')}%0D%0A%0D%0APlease let me know the next steps and availability.%0D%0A%0D%0ABest regards,%0D%0A${encodeURIComponent(formName || '')}`
+      const mailto = `mailto:${pendingDept.coordinator_email}?subject=${encodeURIComponent(subject)}&body=${body}`
+      setIsDialogOpen(false)
+      window.location.href = mailto
+    } catch (err: any) {
+      setError(err?.message || 'Failed to create enquiry')
+    } finally { setSubmitting(false) }
   }
 
   return (
@@ -93,9 +127,43 @@ export default function ConsultancyPage() {
                   <div>{d.coordinator_email}</div>
                 </div>
                 <div className="flex gap-2">
-                  <Button onClick={() => handleContact(d)}>
-                    <Mail className="w-4 h-4 mr-2" /> Contact
-                  </Button>
+                  <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button onClick={() => handleContact(d)}>
+                        <Mail className="w-4 h-4 mr-2" /> Contact
+                      </Button>
+                    </DialogTrigger>
+
+                    <DialogContent>
+                      <DialogHeader>
+                        <DialogTitle>Consultancy Enquiry</DialogTitle>
+                        <DialogDescription>Please provide your details so the department can get back to you.</DialogDescription>
+                      </DialogHeader>
+
+                      <div className="grid gap-2">
+                        {error && <div className="text-sm text-red-600">{error}</div>}
+                        <div>
+                          <Label htmlFor="enquiry-name">Name</Label>
+                          <Input id="enquiry-name" value={formName} onChange={(e) => setFormName(e.target.value)} placeholder="Your full name" />
+                        </div>
+                        <div>
+                          <Label htmlFor="enquiry-email">Email</Label>
+                          <Input id="enquiry-email" type="email" value={formEmail} onChange={(e) => setFormEmail(e.target.value)} placeholder="you@example.com" />
+                        </div>
+                        <div>
+                          <Label htmlFor="enquiry-message">Message</Label>
+                          <Textarea id="enquiry-message" value={formMessage} onChange={(e) => setFormMessage(e.target.value)} rows={4} />
+                        </div>
+                      </div>
+
+                      <DialogFooter>
+                        <Button onClick={submitEnquiryAndOpenMailto} disabled={submitting}>{submitting ? 'Submitting…' : 'Send Enquiry & Open Mail'}</Button>
+                        <DialogClose asChild>
+                          <Button variant="ghost">Cancel</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                   <Button variant="ghost" onClick={() => navigate(`/departments/${d.slug}`)}>View</Button>
                 </div>
               </div>

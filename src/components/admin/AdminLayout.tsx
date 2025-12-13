@@ -13,6 +13,7 @@ export default function AdminLayout() {
     { title: 'Announcements', href: '/admin/announcements', icon: Bell },
     { title: 'Info Blocks', href: '/admin/info-blocks', icon: FileText },
     { title: 'Departments', href: '/admin/departments', icon: Users },
+    { title: 'Enquiries', href: '/admin/enquiries', icon: Bell },
     { title: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
