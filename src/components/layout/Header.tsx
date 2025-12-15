@@ -87,7 +87,19 @@ export function Header() {
 
           {/* Desktop Navigation with Auth inline */}
           <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
+            {(() => {
+              // Insert Consultancy and Components (Capabilities) between Services and Facilities
+              const navWithExtras = [...navItems];
+              const insertAfter = navWithExtras.findIndex((n) => n.label.toLowerCase() === 'services');
+              const consultancyItem = { label: 'Consultancy', href: '/consultancy' };
+              const componentsItem = { label: 'Capabilities', href: '/components' };
+              if (insertAfter >= 0) {
+                navWithExtras.splice(insertAfter + 1, 0, consultancyItem, componentsItem);
+              } else {
+                navWithExtras.push(consultancyItem);
+                navWithExtras.push(componentsItem);
+              }
+              return navWithExtras.map((item) => (
               <Link
                 key={item.label}
                 to={item.href}
@@ -100,7 +112,8 @@ export function Header() {
               >
                 {item.label}
               </Link>
-            ))}
+              ));
+            })()}
             
             {/* Auth inline with nav */}
             <div className="flex items-center gap-2 ml-4 pl-4 border-l border-white/20">
@@ -161,7 +174,16 @@ export function Header() {
         {isMobileMenuOpen && (
           <nav className="lg:hidden mt-4 pb-4 border-t border-white/10">
             <div className="flex flex-col gap-2">
-              {navItems.map((item) => (
+              {(() => {
+                const navWithConsultancy = [...navItems];
+                const insertAfter = navWithConsultancy.findIndex((n) => n.label.toLowerCase() === 'services');
+                const consultancyItem = { label: 'Consultancy', href: '/consultancy' };
+                if (insertAfter >= 0) {
+                  navWithConsultancy.splice(insertAfter + 1, 0, consultancyItem);
+                } else {
+                  navWithConsultancy.push(consultancyItem);
+                }
+                return navWithConsultancy.map((item) => (
                 <Link
                   key={item.label}
                   to={item.href}
@@ -175,7 +197,8 @@ export function Header() {
                 >
                   {item.label}
                 </Link>
-              ))}
+                ));
+              })()}
 
               {/* Mobile Auth Section */}
               <div className="flex flex-col gap-2 mt-2 pt-2 border-t border-white/10">

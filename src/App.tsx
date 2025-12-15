@@ -12,6 +12,11 @@ import InstrumentsPage from "./pages/Instruments";
 import InstrumentDetailPage from "./pages/InstrumentDetail";
 import ServicesPage from "./pages/Services";
 import ServiceDetailPage from "./pages/ServiceDetail";
+import ComponentsPage from './pages/Components'
+import ComponentDetailPage from './pages/ComponentDetail'
+import ComponentsListPage from './pages/admin/ComponentsList'
+import ComponentFormPage from './pages/admin/ComponentForm'
+
 import FacilitiesPage from "./pages/Facilities";
 import FacilityDetailPage from "./pages/FacilityDetail";
 import LeaderDetailPage from "./pages/LeaderDetailPage";
@@ -30,6 +35,11 @@ import AnnouncementsListPage from "./pages/admin/AnnouncementsList";
 import AnnouncementFormPage from "./pages/admin/AnnouncementForm";
 import InfoBlocksListPage from "./pages/admin/InfoBlocksList";
 import InfoBlockFormPage from "./pages/admin/InfoBlockForm";
+import EnquiriesListPage from "./pages/admin/EnquiriesList";
+import DepartmentsListPage from "./pages/admin/DepartmentsList";
+import DepartmentFormPage from "./pages/admin/DepartmentForm";
+import ConsultancyPage from "./pages/Consultancy";
+import DepartmentDetailPage from "./pages/DepartmentDetail";
 
 const queryClient = new QueryClient();
 
@@ -41,7 +51,7 @@ const App = () => (
       <BrowserRouter>
         <AdminAuthProvider>
           <Routes>
-            <Route element={<RootLayout />}>
+            <Route path="/" element={<RootLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/instruments" element={<InstrumentsPage />} />
@@ -53,6 +63,10 @@ const App = () => (
               <Route path="/leadership/:id" element={<LeaderDetailPage />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/consultancy" element={<ConsultancyPage />} />
+              <Route path="/departments/:slug" element={<DepartmentDetailPage />} />
+              <Route path="/components" element={<ComponentsPage />} />
+              <Route path="/components/:slug" element={<ComponentDetailPage />} />
             </Route>
             <Route path="/auth" element={<Auth />} />
             
@@ -72,6 +86,13 @@ const App = () => (
               <Route path="info-blocks" element={<InfoBlocksListPage />} />
               <Route path="info-blocks/new" element={<InfoBlockFormPage />} />
               <Route path="info-blocks/:key" element={<InfoBlockFormPage />} />
+              <Route path="enquiries" element={<EnquiriesListPage />} />
+              <Route path="departments" element={<DepartmentsListPage />} />
+              <Route path="departments/new" element={<DepartmentFormPage />} />
+              <Route path="departments/:slug" element={<DepartmentFormPage />} />
+              <Route path="components" element={<ComponentsListPage />} />
+              <Route path="components/new" element={<ComponentFormPage />} />
+              <Route path="components/:id" element={<ComponentFormPage />} />
               <Route path="settings" element={<div />} />
             </Route>
             {/* Catch-all - must be last */}

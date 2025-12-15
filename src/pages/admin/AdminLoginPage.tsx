@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAdminAuth } from '@/contexts/AdminAuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,9 +14,10 @@ export default function AdminLoginPage() {
   const [loading, setLoading] = useState(false);
   const [showDevKeyModal, setShowDevKeyModal] = useState(false);
   const [tempDevKey, setTempDevKey] = useState('');
-  const { login } = useAdminAuth();
+  const { login, isAuthenticated } = useAdminAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const location = useLocation();
 
   // Check if VITE_ADMIN_DEV_KEY is configured
   useEffect(() => {
@@ -63,7 +64,7 @@ export default function AdminLoginPage() {
         title: 'Success',
         description: 'You are now logged in as admin.',
       });
-      navigate('/admin');
+      navigate('/admin', { replace: true });
     } else {
       toast({
         title: 'Authentication Failed',
@@ -76,6 +77,13 @@ export default function AdminLoginPage() {
 
     setLoading(false);
   };
+
+  // If user is already authenticated and lands on /admin/login, redirect to /admin
+  useEffect(() => {
+    if (isAuthenticated && location.pathname === '/admin/login') {
+      navigate('/admin', { replace: true });
+    }
+  }, [isAuthenticated, location.pathname, navigate]);
 
   return (
     <>

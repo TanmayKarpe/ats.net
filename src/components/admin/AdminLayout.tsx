@@ -3,15 +3,18 @@ import { Link, Outlet } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Card } from '@/components/ui/card';
-import { Home, Package, DollarSign, Bell, FileText, Settings } from 'lucide-react';
+import { Home, Package, DollarSign, Bell, FileText, Settings, Users } from 'lucide-react';
 
 export default function AdminLayout() {
   const sections = [
     { title: 'Dashboard', href: '/admin', icon: Home },
     { title: 'Instruments', href: '/admin/instruments', icon: Package },
+    { title: 'Components', href: '/admin/components', icon: Package },
     { title: 'Prices', href: '/admin/prices', icon: DollarSign },
     { title: 'Announcements', href: '/admin/announcements', icon: Bell },
     { title: 'Info Blocks', href: '/admin/info-blocks', icon: FileText },
+    { title: 'Departments', href: '/admin/departments', icon: Users },
+    { title: 'Enquiries', href: '/admin/enquiries', icon: Bell },
     { title: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
