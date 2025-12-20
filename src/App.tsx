@@ -20,6 +20,7 @@ import ComponentFormPage from './pages/admin/ComponentForm'
 import FacilitiesPage from "./pages/Facilities";
 import FacilityDetailPage from "./pages/FacilityDetail";
 import LeaderDetailPage from "./pages/LeaderDetailPage";
+import CoordinatorProfile from "./pages/CoordinatorProfile";
 import PricingPage from "./pages/Pricing";
 import ContactPage from "./pages/Contact";
 import Auth from "./pages/Auth";
@@ -61,6 +62,7 @@ const App = () => (
               <Route path="/facilities" element={<FacilitiesPage />} />
               <Route path="/facilities/:id" element={<FacilityDetailPage />} />
               <Route path="/leadership/:id" element={<LeaderDetailPage />} />
+                            <Route path="/coordinator" element={<CoordinatorProfile />} />
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/consultancy" element={<ConsultancyPage />} />

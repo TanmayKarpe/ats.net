@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { buildGmailUrl } from '@/lib/email'
 
 export default function InstrumentDetailLivePage() {
   const [isOpen, setIsOpen] = useState(false)
@@ -158,7 +159,19 @@ export default function InstrumentDetailLivePage() {
                 {contactEmail && (
                   <p>
                     <span className="text-sm text-muted-foreground">Email:</span>{' '}
-                    <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a>
+                    <a
+                      href={buildGmailUrl({
+                        to: contactEmail,
+                        cc: 'bhushan.food@gmail.com',
+                        subject: `Instrument Contact – ${name}`,
+                        body: ''
+                      })}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline"
+                    >
+                      {contactEmail}
+                    </a>
                   </p>
                 )}
                 {contactPhone && (
@@ -215,9 +228,14 @@ export default function InstrumentDetailLivePage() {
                           if (sampleWeight && (isNaN(Number(sampleWeight)) || Number(sampleWeight) < 0)) return setBookingError('Sample weight must be a non-negative number')
                           const subject = `Booking Request: ${name} (${sampleName || 'sample'})`
                           const body = `Hi,%0A%0AI would like to book the ${name}.%0A%0ASample name: ${sampleName}%0ASample weight (g): ${sampleWeight}%0ANumber of samples: ${numSamples}%0APurpose: ${purpose}%0AContact Email: ${userEmail}%0A%0AThanks,%0A${userEmail}`
-                          const mailto = `mailto:${contactEmail || 'ats@nmu.ac.in'}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+                          const gmailUrl = buildGmailUrl({
+                            to: contactEmail || 'ats@nmu.ac.in',
+                            cc: 'bhushan.food@gmail.com',
+                            subject,
+                            body,
+                          })
                           setIsOpen(false)
-                          window.location.href = mailto
+                          window.open(gmailUrl, '_blank', 'noopener')
                         }}>Send Email</Button>
                       </div>
                     </DialogFooter>

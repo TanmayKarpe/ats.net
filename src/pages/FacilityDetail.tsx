@@ -1,5 +1,6 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getFacilityById, Facility } from '@/data/facilities';
+import { buildGmailUrl } from '@/lib/email';
 
 export default function FacilityDetailPage() {
   const { id } = useParams();
@@ -90,7 +91,16 @@ export default function FacilityDetailPage() {
               <h3 className="text-sm font-bold text-foreground mb-2">Contact</h3>
               <p className="text-sm text-muted-foreground">
                 For inquiries about this facility, email{' '}
-                <a href={`mailto:${facility.contactEmail}`} className="underline text-primary font-semibold">
+                <a
+                  href={buildGmailUrl({
+                    to: facility.contactEmail,
+                    subject: `Inquiry – ${facility.name}`,
+                    body: ''
+                  })}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline text-primary font-semibold"
+                >
                   {facility.contactEmail}
                 </a>
               </p>

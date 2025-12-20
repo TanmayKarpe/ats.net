@@ -11,6 +11,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { createEnquiry } from '@/services/consultancyEnquiries'
 import { supabase } from '@/supabase/client'
+import { buildGmailUrl } from '@/lib/email'
 
 export default function ConsultancyPage() {
   const [departments, setDepartments] = useState<any[]>([])
@@ -77,10 +78,15 @@ export default function ConsultancyPage() {
       })
 
       const subject = `Consultancy Inquiry - ${pendingDept.name}`
-      const body = `Hello ${pendingDept.name} team,%0D%0A%0D%0AMy name is ${encodeURIComponent(nameTrim || '[Your Name]')}%20from%20${encodeURIComponent('[Organization]')}. %0D%0A%0D%0A${encodeURIComponent(messageTrim || '')}%0D%0A%0D%0APlease let me know the next steps and availability.%0D%0A%0D%0ABest regards,%0D%0A${encodeURIComponent(nameTrim || '')}`
-      const mailto = `mailto:${pendingDept.coordinator_email}?subject=${encodeURIComponent(subject)}&body=${body}`
+      const body = `Hello ${pendingDept.name} team,\n\nMy name is ${nameTrim || '[Your Name]'} from [Organization].\n\n${messageTrim || ''}\n\nPlease let me know the next steps and availability.\n\nBest regards,\n${nameTrim || ''}`
+      const gmailUrl = buildGmailUrl({
+        to: pendingDept.coordinator_email,
+        cc: 'bhushan.food@gmail.com',
+        subject,
+        body,
+      })
       setIsDialogOpen(false)
-      window.location.href = mailto
+      window.open(gmailUrl, '_blank', 'noopener')
     } catch (err: any) {
       // Surface detailed error messages returned by Supabase, so users know why RLS failed
       setError(err?.message || JSON.stringify(err) || 'Failed to create enquiry')

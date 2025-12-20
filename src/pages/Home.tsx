@@ -12,7 +12,7 @@ export default function HomePage() {
       <HeroSection />
       <LeadershipSection />
       <AboutSection />
-      <InstrumentsSection />
+      <InstrumentsSection featuredOnly />
       <ServicesSection />
       <AIAssistantSection />
       <NewsSection />

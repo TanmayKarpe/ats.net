@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, ArrowLeft } from 'lucide-react';
+import { buildGmailUrl } from '@/lib/email';
 
 export default function CoordinatorProfile() {
   const navigate = useNavigate();
@@ -12,8 +13,7 @@ export default function CoordinatorProfile() {
     phone: '+91 91685 31101',
     image: `${import.meta.env.BASE_URL}coats.png`,
     role: 'ATS Coordinator',
-    bio: 'The Coordinator of the ATS Cell serves as the strategic lead and technical liaison, responsible for overseeing the seamless delivery of advanced analytical and characterization services. The role encompasses planning, coordination, and supervision of all ATS activities to ensure accuracy, reliability, and timely execution of testing and analysis.',
-    responsibilities: 'The Coordinator facilitates effective communication between faculty experts, technical staff, researchers, industry partners, and external stakeholders, thereby aligning service outcomes with institutional and client requirements. This position ensures that all ATS services meet the highest standards of quality and reliability.',
+    bio: 'The Coordinator of the ATS Cell serves as the strategic lead and technical liaison, responsible for overseeing the seamless delivery of advanced analytical and characterization services. The role encompasses planning, coordination, and supervision of all ATS activities to ensure accuracy, reliability, and timely execution of testing and analysis. The Coordinator facilitates effective communication between faculty experts, technical staff, researchers, industry partners, and external stakeholders, thereby aligning service outcomes with institutional and client requirements.',
   };
 
   return (
@@ -53,7 +53,14 @@ export default function CoordinatorProfile() {
                 <Mail size={16} /> Email
               </h3>
               <a
-                href={`mailto:${coordinator.email}`}
+                href={buildGmailUrl({
+                  to: coordinator.email,
+                  cc: 'bhushan.food@gmail.com',
+                  subject: `Coordinator Enquiry – ${coordinator.name}`,
+                  body: ''
+                })}
+                target="_blank"
+                rel="noreferrer"
                 className="text-sm text-primary hover:underline block"
               >
                 {coordinator.email}
@@ -86,10 +93,6 @@ export default function CoordinatorProfile() {
             <p className="text-muted-foreground leading-relaxed">{coordinator.bio}</p>
           </div>
 
-          <div>
-            <h2 className="text-xl font-bold mb-3">Key Responsibilities</h2>
-            <p className="text-muted-foreground leading-relaxed">{coordinator.responsibilities}</p>
-          </div>
 
           {/* Back Button at Bottom */}
           <div className="pt-6">

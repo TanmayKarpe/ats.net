@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, ExternalLink, Facebook, Twitter, Linkedin, Youtube, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { footerQuickLinks, footerInstruments } from '@/data/nav';
+import { buildGmailUrl } from '@/lib/email';
 
 export function Footer() {
   return (
@@ -85,7 +86,16 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} className="text-secondary shrink-0" />
-                <a href="mailto:ats@nmu.ac.in" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
+                <a
+                  href={buildGmailUrl({
+                    to: 'ats@nmu.ac.in',
+                    subject: 'ATS Enquiry',
+                    body: ''
+                  })}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
+                >
                   ats@nmu.ac.in
                 </a>
               </div>

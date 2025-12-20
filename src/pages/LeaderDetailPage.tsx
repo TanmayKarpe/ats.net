@@ -2,6 +2,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getLeaderById, Leader } from '@/data/leaders';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone, ArrowLeft } from 'lucide-react';
+import { buildGmailUrl } from '@/lib/email';
 
 export default function LeaderDetailPage() {
   const { id } = useParams();
@@ -74,24 +75,30 @@ export default function LeaderDetailPage() {
               </div>
             )}
 
-            {leader.email && leader.email.length > 0 && (
-              <div>
-                <h3 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2">
-                  <Mail size={16} /> Email
-                </h3>
-                <div className="space-y-1">
-                  {leader.email.map((email) => (
-                    <a
-                      key={email}
-                      href={`mailto:${email}`}
-                      className="text-sm text-primary hover:underline block"
-                    >
-                      {email}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
+                {leader.email && leader.email.length > 0 && (
+                  <div>
+                    <h3 className="text-sm font-bold text-foreground mb-2 flex items-center gap-2">
+                      <Mail size={16} /> Email
+                    </h3>
+                    <div className="space-y-1">
+                      {leader.email.map((email) => (
+                        <a
+                          key={email}
+                          href={buildGmailUrl({
+                            to: email,
+                            subject: `Leadership Enquiry – ${leader.name}`,
+                            body: ''
+                          })}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm text-primary hover:underline block"
+                        >
+                          {email}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
             {leader.phone && leader.phone.length > 0 && (
               <div>

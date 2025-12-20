@@ -5,7 +5,7 @@ const aboutCards = [
   {
     icon: Target,
     title: 'Who We Are',
-    description: 'A state-of-the-art analytical facility under KBCNMU, dedicated to providing high-precision instrumentation services to researchers, academicians, and industry professionals across India.',
+    description: 'We are a state-of-the-art analytical facility operating under KBCNMU, committed to delivering high-precision instrumentation and characterization services. Our facility serves researchers, academicians, and industry professionals across India, enabling reliable data generation, advanced analysis, and impactful scientific outcomes through world-class infrastructure and technical expertise.',
     color: 'text-secondary',
     bgColor: 'bg-secondary/10',
   },
@@ -19,7 +19,7 @@ const aboutCards = [
   {
     icon: Users,
     title: 'Who Can Use ATS',
-    description: 'Our facility is open to university researchers, external academic institutions, R&D laboratories, and industry partners. Special rates available for students and academic collaborations.',
+    description: 'ATS is accessible to university researchers, external academic institutions, R&D laboratories, and industry collaborators. We actively support interdisciplinary research and industrial problem-solving, with subsidized access and special provisions available for students and academic collaborations to promote inclusive and high-quality research.',
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
   },

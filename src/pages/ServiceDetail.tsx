@@ -1,6 +1,7 @@
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getServiceById, Service } from '@/data/services';
 
+import { buildGmailUrl } from '@/lib/email';
 export default function ServiceDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -92,7 +93,17 @@ export default function ServiceDetailPage() {
               <h3 className="text-sm font-bold text-foreground mb-2">Contact</h3>
               <p className="text-sm text-muted-foreground">
                 For more information or to request service, email{' '}
-                <a href={`mailto:${service.contactEmail}`} className="underline text-primary font-semibold">
+                <a
+                  href={buildGmailUrl({
+                    to: service.contactEmail,
+                    cc: 'bhushan.food@gmail.com',
+                    subject: `Service Enquiry – ${service.name}`,
+                    body: ''
+                  })}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline text-primary font-semibold"
+                >
                   {service.contactEmail}
                 </a>
               </p>

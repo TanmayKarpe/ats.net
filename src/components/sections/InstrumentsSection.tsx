@@ -5,7 +5,7 @@ import { InstrumentCard } from '@/components/instruments/InstrumentCard';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 
-export function InstrumentsSection() {
+export function InstrumentsSection({ featuredOnly = false }: { featuredOnly?: boolean }) {
   const [items, setItems] = useState<Instrument[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,9 +29,13 @@ export function InstrumentsSection() {
           setLoading(false);
           return;
         }
-        const { data, error } = await supabase
+        let query = supabase
           .from('instruments')
           .select('*');
+        if (featuredOnly) {
+          query = query.eq('is_featured', true);
+        }
+        const { data, error } = await query;
         if (error) {
           console.error('Supabase query error:', {
             message: error.message,

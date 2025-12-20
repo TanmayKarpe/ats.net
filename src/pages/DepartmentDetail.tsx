@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getDepartmentBySlug } from '@/services/departments'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
+import { buildGmailUrl } from '@/lib/email';
 
 export default function DepartmentDetailPage() {
   const { slug } = useParams<{ slug?: string }>()
@@ -28,9 +29,18 @@ export default function DepartmentDetailPage() {
       <h1 className="text-3xl font-bold">{department.name}</h1>
       <p className="mt-4 text-muted-foreground">{department.description}</p>
       <div className="mt-6">
-        <a href={`mailto:${department.coordinator_email}?subject=Consultancy%20Inquiry%20${encodeURIComponent(department.name)}`}>
-          <Button>Contact Coordinator</Button>
-        </a>
+           <a
+             href={buildGmailUrl({
+               to: department.coordinator_email,
+               cc: 'bhushan.food@gmail.com',
+               subject: `Consultancy Inquiry ${department.name}`,
+               body: ''
+             })}
+             target="_blank"
+             rel="noreferrer"
+           >
+             <Button className="w-full">Contact Coordinator</Button>
+           </a>
       </div>
     </div>
   )
