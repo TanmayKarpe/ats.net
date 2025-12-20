@@ -43,15 +43,13 @@ export function HeroSection() {
         </h1>
         <p className="text-2xl md:text-3xl text-white/90 font-semibold mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-emerald-300 to-teal-300">
-            Analytical Testing Services
+            Analytical Testing Services Cell
           </span>
         </p>
 
         {/* Subtitle */}
         <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-          From Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon – Your gateway to advanced analytical and characterization services.
-          <br className="hidden md:block" />
-          Empowering research with state-of-the-art instrumentation.
+          From Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon – Empowering Innovation Through Precision Analysis. Access state-of-the-art instrumentation and expert characterization services at KBCNMU, Jalgaon. We bridge the gap between advanced research and actionable data.
         </p>
 
         {/* CTA Buttons */}
