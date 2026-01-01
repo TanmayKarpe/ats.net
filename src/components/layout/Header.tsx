@@ -157,6 +157,26 @@ export function Header() {
           </button>
         </div>
 
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <nav className="lg:hidden mt-4 pb-4 border-t border-white/10">
+            <div className="flex flex-col gap-2 mt-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    "px-4 py-2 rounded-lg text-sm font-medium transition-all",
+                    isScrolled 
+                      ? "text-foreground hover:bg-muted" 
+                      : "text-white hover:bg-white/10"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              
               {!supabase ? (
                 <div className="text-center text-yellow-500 p-4">
                   Online service temporarily unavailable
