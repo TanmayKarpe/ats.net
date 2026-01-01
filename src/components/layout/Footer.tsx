@@ -1,4 +1,5 @@
-import { Mail, Phone, MapPin, ExternalLink, Facebook, Twitter, Linkedin, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, Facebook, Twitter, Linkedin, Youtube, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { footerQuickLinks, footerInstruments } from '@/data/nav';
 
 export function Footer() {
@@ -93,6 +94,15 @@ export function Footer() {
                 <a href="tel:+912572257451" className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">
                   +91 257 2257451
                 </a>
+              </div>
+              <div className="pt-4 border-t border-white/20">
+                <Link
+                  to="/auth"
+                  className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors flex items-center gap-2 group"
+                >
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  User Login
+                </Link>
               </div>
             </div>
           </div>

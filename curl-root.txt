@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATS – Analytical Testing Services | Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon</title>
+    <meta name="description" content="ATS – Analytical Testing Services at Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon provides advanced analytical and characterization services with state-of-the-art instruments including FE-SEM, XRD, FTIR, UV-Vis, GC-MS and more." />
+    <meta name="keywords" content="ATS, analytical testing, analytical instruments, Jalgaon, FE-SEM, XRD, FTIR, research facility, characterization services" />
+    <meta name="author" content="Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon" />
+
+    <meta property="og:title" content="ATS – Analytical Testing Services | Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon" />
+    <meta property="og:description" content="Advanced analytical and characterization services with state-of-the-art instruments. Open access facility for research excellence." />
+    <meta property="og:type" content="website" />

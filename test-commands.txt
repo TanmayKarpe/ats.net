@@ -1,0 +1,41 @@
+### Test Commands
+
+# From repo root
+npm ci
+npx tsc --noEmit
+npx vitest run tests/unit/supabase-client.test.ts
+npm run build
+npm run dev &
+sleep 2
+curl -sS http://localhost:8080/ | head -n 5
+
+# Browser console check (Dev only):
+# window.supabase
+
+### Expected Results
+# - npx tsc --noEmit -> no type errors
+# - npx vitest run -> 1 test passed
+# - npm run build -> exit 0 'built in x.xx s'
+# - curl -> HTML page starting with <!doctype html>
+# Commands to run locally to validate the changes
+
+# Install dependencies
+npm ci
+
+# TypeScript compilation check
+npx tsc --noEmit
+
+# Run unit tests (if Vitest configured as test script)
+npm test
+
+# Production build
+npm run build
+
+# Run dev server (background)
+npm run dev &
+
+# Confirm server up (default Vite port 8080 in this repo)
+curl -sS http://localhost:8080/ | head -n 5
+
+# In browser devtools console, check:
+# window.supabase

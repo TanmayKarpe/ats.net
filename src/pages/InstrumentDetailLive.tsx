@@ -7,10 +7,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { AlertCircle } from 'lucide-react';
-import { formatTextToList, cleanText } from '@/lib/text';
 
-export default function InstrumentDetailPage() {
+export default function InstrumentDetailLivePage() {
   const [isOpen, setIsOpen] = useState(false)
   const [sampleName, setSampleName] = useState('')
   const [sampleWeight, setSampleWeight] = useState('')
@@ -21,7 +19,7 @@ export default function InstrumentDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [row, setRow] = useState<any | null>(null)
-  const { code } = useParams();
+  const { id } = useParams();
 
   const imageByName = useMemo(() => {
     const map = new Map<string, string | undefined>();
@@ -35,7 +33,7 @@ export default function InstrumentDetailPage() {
   useEffect(() => {
     let cancelled = false;
     async function load() {
-      if (!code) {
+      if (!id) {
         setError('Instrument not found');
         setLoading(false);
         return;
@@ -44,18 +42,9 @@ export default function InstrumentDetailPage() {
         const { data, error } = await supabase
           .from('instruments')
           .select('*')
-          .eq('code', code)
+          .eq('code', id)
           .maybeSingle();
-        if (error) {
-          console.error('Supabase query error:', {
-            message: error.message,
-            code: error.code,
-            details: error.details,
-            hint: error.hint,
-            full: error
-          });
-          throw error;
-        }
+        if (error) throw error;
         if (!cancelled) setRow(data || null);
       } catch (e: any) {
         if (!cancelled) setError(e?.message || 'Failed to load instrument');
@@ -65,54 +54,40 @@ export default function InstrumentDetailPage() {
     }
     load();
     return () => { cancelled = true };
-  }, [code]);
+  }, [id]);
 
   if (loading) return <div className="container py-12 text-muted-foreground">Loading…</div>;
-  
-  if (error || !row) {
-    return (
-      <div className="container py-12">
-        <div className="max-w-md mx-auto text-center">
-          <div className="mb-6 flex justify-center">
-            <div className="rounded-full bg-muted p-6">
-              <AlertCircle className="h-12 w-12 text-muted-foreground" />
-            </div>
-          </div>
-          <h2 className="text-2xl font-bold mb-2">Instrument Not Found</h2>
-          <p className="text-muted-foreground mb-6">
-            {error || "The instrument you're looking for could not be found in our database."}
-          </p>
-          <div className="flex gap-3 justify-center">
-            <Link to="/instruments">
-              <Button variant="outline">Browse Instruments</Button>
-            </Link>
-            <Link to="/contact">
-              <Button>Contact Us</Button>
-            </Link>
-          </div>
-        </div>
+  if (error) return (
+    <div className="container py-12">
+      <h2 className="text-2xl font-bold mb-4">Instrument not found</h2>
+      <p className="mb-4">{error}</p>
+      <div className="flex gap-2">
+        <Link to="/instruments">
+          <Button variant="outline">Go Back</Button>
+        </Link>
+        <Link to="/instruments" className="btn btn-ghost">
+          Browse Instruments
+        </Link>
       </div>
-    );
-  }
+    </div>
+  );
+  if (!row) return <div className="container py-12">Instrument not found.</div>;
 
-  const name: string = row?.name || String(code);
+  const name: string = row?.name || String(id);
   const department: string = row?.department || '';
-  const make: string = row?.make || '';
-  const model: string = row?.model || '';
-  const makeModel: string = [make, model].filter(Boolean).join(' ');
-  const overview: string = cleanText(row?.description || '');
-  const specsList = formatTextToList((row as any)?.specifications ?? (row as any)?.specs ?? (row as any)?.features ?? null);
-  const applicationsList: string[] | null = formatTextToList((row as any)?.applications ?? null);
-  const sampleReqList: string[] | null = formatTextToList((row as any)?.sample ?? null);
-  const priceInternal = row?.price_internal ? String(row.price_internal) : null;
-  const priceExternal = row?.price_external ? String(row.price_external) : null;
-  const priceIndustry = row?.price_industry ? String(row.price_industry) : null;
-  const contactName = row?.contact_name ? String(row.contact_name) : '';
-  const contactEmail = row?.contact_email ? String(row.contact_email) : '';
-  const contactPhone = row?.contact_phone ? String(row.contact_phone) : '';
-  const contactMode = row?.contact_mode ? String(row.contact_mode) : '';
-  const paperSubm = row?.paper_subm ? String(row.paper_subm).toUpperCase() : '';
-  const image = imageByName.get((name || code || '').toLowerCase());
+  const makeModel: string = [row?.make, row?.model].filter(Boolean).join(' ');
+  const description: string = row?.description || '';
+  const applications: string[] = Array.isArray(row?.applications)
+    ? row.applications
+    : (row?.applications ? String(row.applications).split(/\n|,|;\s*/).filter(Boolean) : []);
+  const sampleReq: string = row?.['sample '] ? String(row['sample ']) : '';
+  const priceInternal = row?.price_internal ?? null;
+  const priceExternal = row?.price_external ?? null;
+  const priceIndustry = row?.price_industry ?? null;
+  const contactName = row?.contact_name || '';
+  const contactEmail = row?.contact_email || '';
+  const contactPhone = row?.contact_phone || '';
+  const image = imageByName.get((name || id || '').toLowerCase());
 
   return (
     <div className="container py-12">
@@ -129,54 +104,31 @@ export default function InstrumentDetailPage() {
           )}
           <div className="mt-4">
             <h1 className="text-3xl font-bold">{name}</h1>
-            {makeModel && <p className="text-lg text-muted-foreground mt-2">{makeModel}</p>}
-            {department && (
-              <span className="inline-block px-3 py-1 mt-3 rounded-full bg-primary/10 text-primary text-sm font-semibold">
-                {department}
-              </span>
-            )}
-            <div className="h-px bg-border mt-4" />
+            {department && <p className="text-sm text-muted-foreground mt-1">Department: {department}</p>}
+            {makeModel && <p className="text-sm text-muted-foreground">Make/Model: {makeModel}</p>}
+            <div className="h-px bg-border mt-3" />
           </div>
         </div>
 
         <div className="lg:col-span-2 prose">
-          {overview && (
-            <>
-              <h2>Overview</h2>
-              <p>{overview}</p>
-            </>
-          )}
+          <h2>Overview</h2>
+          <p>{description}</p>
 
-          {specsList && specsList.length > 0 && (
-            <>
-              <h3>Specifications</h3>
-              <ul>
-                {specsList.map((s, i) => (
-                  <li key={i}>{s}</li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          {applicationsList && applicationsList.length > 0 && (
+          {applications && applications.length > 0 && (
             <>
               <h3>Applications</h3>
               <ul>
-                {applicationsList.map((a, i) => (
+                {applications.map((a, i) => (
                   <li key={i}>{a}</li>
                 ))}
               </ul>
             </>
           )}
 
-          {sampleReqList && sampleReqList.length > 0 && (
+          {sampleReq && (
             <>
               <h3>Sample Requirements</h3>
-              <ul>
-                {sampleReqList.map((s, i) => (
-                  <li key={i}>{s}</li>
-                ))}
-              </ul>
+              <p>{sampleReq}</p>
             </>
           )}
 
@@ -185,69 +137,40 @@ export default function InstrumentDetailPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x">
               <div className="p-4">
                 <p className="text-sm text-muted-foreground">KBCNMU Students / Faculty</p>
-                <p className="text-lg font-semibold mt-1">{priceInternal || 'Contact for details'}</p>
+                <p className="text-lg font-semibold mt-1">{priceInternal ?? 'Contact for details'}</p>
               </div>
               <div className="p-4">
                 <p className="text-sm text-muted-foreground">Other Universities / Institutes</p>
-                <p className="text-lg font-semibold mt-1">{priceExternal || 'Contact for details'}</p>
+                <p className="text-lg font-semibold mt-1">{priceExternal ?? 'Contact for details'}</p>
               </div>
               <div className="p-4">
                 <p className="text-sm text-muted-foreground">Industry / Corporate (with GST)</p>
-                <p className="text-lg font-semibold mt-1">{priceIndustry || 'Contact for details'}</p>
+                <p className="text-lg font-semibold mt-1">{priceIndustry ?? 'Contact for details'}</p>
               </div>
             </div>
           </div>
 
-          {(contactName || contactEmail || contactPhone || contactMode) && (
+          {(contactName || contactEmail || contactPhone) && (
             <>
-              <h3>Contact Information</h3>
-              <div className="not-prose border rounded-md p-4 space-y-2">
-                {contactName && (
-                  <p>
-                    <span className="text-sm text-muted-foreground">Contact Person:</span>{' '}
-                    <span className="font-medium">{contactName}</span>
-                  </p>
-                )}
+              <h3>Contact</h3>
+              <div className="not-prose border rounded-md p-4">
+                {contactName && <p><span className="text-sm text-muted-foreground">Contact Person:</span> {contactName}</p>}
                 {contactEmail && (
                   <p>
                     <span className="text-sm text-muted-foreground">Email:</span>{' '}
-                    <a href={`mailto:${contactEmail}`} className="underline text-primary hover:text-primary/80">
-                      {contactEmail}
-                    </a>
+                    <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a>
                   </p>
                 )}
                 {contactPhone && (
                   <p>
                     <span className="text-sm text-muted-foreground">Phone:</span>{' '}
-                    <a href={`tel:${contactPhone}`} className="underline text-primary hover:text-primary/80">
-                      {contactPhone}
-                    </a>
-                  </p>
-                )}
-                {contactMode && (
-                  <p>
-                    <span className="text-sm text-muted-foreground">Preferred Contact Mode:</span>{' '}
-                    <span className="font-medium">{contactMode}</span>
+                    <a href={`tel:${contactPhone}`} className="underline">{contactPhone}</a>
                   </p>
                 )}
               </div>
-            </>
-          )}
 
-          {paperSubm === 'YES' && (
-            <div className="not-prose mt-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-amber-50 border border-amber-200 text-amber-800">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span className="text-sm font-medium">Paper submission required</span>
-              </div>
-            </div>
-          )}
-
-          {contactEmail && (
-            <div className="mt-4">
-              <Dialog open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
+              <div className="mt-4">
+                <Dialog open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
                   <DialogTrigger asChild>
                     <Button>Book this instrument</Button>
                   </DialogTrigger>
@@ -301,7 +224,8 @@ export default function InstrumentDetailPage() {
                   </DialogContent>
                 </Dialog>
               </div>
-            )}
+            </>
+          )}
         </div>
       </div>
     </div>

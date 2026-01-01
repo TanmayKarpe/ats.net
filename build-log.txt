@@ -1,0 +1,31 @@
+vite v7.2.7 building client environment for production...
+transforming...
+Browserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[vite:css][postcss] @import must precede all other statements (besides @charset or empty @layer)
+3  |  @tailwind utilities;
+4  |  
+5  |  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+6  |  
+7  |  @layer base {
+✓ 1861 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              2.05 kB │ gzip:   0.69 kB
+dist/assets/instrument-xrd-flx65HKR.jpg     15.51 kB
+dist/assets/instrument-ftir-Brss1eCi.jpg    15.84 kB
+dist/assets/instrument-uvvis-DaW7fPlW.jpg   16.94 kB
+dist/assets/instrument-fesem-Cr9-9d2z.jpg   17.88 kB
+dist/assets/instrument-gcms-C2P0GBcM.jpg    19.98 kB
+dist/assets/instrument-nmr-CxksFHa-.jpg     21.53 kB
+dist/assets/hero-bg-Br6HiVGq.jpg            90.87 kB
+dist/assets/index-Dp0y6O1b.css              77.19 kB │ gzip:  12.97 kB
+dist/assets/index-DUthx80W.js              668.87 kB │ gzip: 193.11 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.61s
