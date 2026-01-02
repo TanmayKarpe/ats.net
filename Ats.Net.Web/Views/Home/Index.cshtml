@@ -1,0 +1,505 @@
+﻿@{
+    ViewData["Title"] = "Home";
+
+    var stats = new[]
+    {
+        new { Value = "15+", Label = "Instruments" },
+        new { Value = "500+", Label = "Samples/Month" },
+        new { Value = "100+", Label = "Research Papers" },
+        new { Value = "50+", Label = "Partner Institutions" }
+    };
+
+    var services = new[]
+    {
+        new { Id = "internal-users", Name = "Internal Users", Category = "Students & Faculty of KBCNMU", Summary = "Priority access with subsidized rates for all university members. Quick turnaround for academic research projects." },
+        new { Id = "external-academic", Name = "External Academic", Category = "Other Universities & Institutes", Summary = "Collaborative access for researchers from other academic institutions across India and globally." },
+        new { Id = "industry-rd-labs", Name = "Industry & R&D Labs", Category = "Corporate & Industrial Partners", Summary = "Premium analytical services for quality control, product development, and industrial research needs." }
+    };
+
+    var instruments = new[]
+    {
+        new { Id = "fe-sem", Name = "FE-SEM", Image = "/assets/instrument-fesem.jpg" },
+        new { Id = "ftir-spectrometer", Name = "FTIR Spectrometer", Image = "/assets/instrument-ftir.jpg" },
+        new { Id = "xrd-system", Name = "XRD System", Image = "/assets/instrument-xrd.jpg" },
+        new { Id = "uv-vis", Name = "UV-Vis Spectrophotometer", Image = "/assets/instrument-uvvis.jpg" },
+        new { Id = "gc-ms", Name = "GC-MS", Image = "/assets/instrument-gcms.jpg" },
+        new { Id = "nmr", Name = "NMR", Image = "/assets/instrument-nmr.jpg" }
+    };
+
+    var leaders = new[]
+    {
+        new { Id = "governor", Name = "Shri Acharya Devvrat", Role = "Governor of Maharashtra & Gujarat (Chancellor)", Image = "/governor.png" },
+        new { Id = "vice-chancellor", Name = "Prof. V. L. Maheshwari", Role = "Vice-Chancellor", Image = "/vice-chancellor.png" },
+        new { Id = "pro-vice-chancellor", Name = "Prof. S. T. Ingle", Role = "Pro-Vice-Chancellor", Image = "/pro-vc.png" },
+        new { Id = "registrar", Name = "Dr. Vinod Patil", Role = "Registrar", Image = "/registrar.png" }
+    };
+
+    var updates = new[]
+    {
+        new { Id = "u1", Type = "training", Title = "Hands-on FE-SEM training batch", Short = "Instructor-led practical session for new users of the FE-SEM with EDS.", Instrument = "FE-SEM", Detail = "Hands-on FE-SEM training with focus on sample prep, EDS mapping, and safe operation." },
+        new { Id = "u2", Type = "availability", Title = "XRD weekend availability window", Short = "Additional evening slot opened for powder XRD scans.", Instrument = "XRD System", Detail = "Reserve the XRD for extended evening runs; ideal for longer scans and batch measurements." },
+        new { Id = "u3", Type = "maintenance", Title = "FTIR scheduled maintenance", Short = "ATR crystal cleaning and calibration in progress (downtime 4 hrs).", Instrument = "FTIR Spectrometer", Detail = "FTIR ATR crystal calibration and cleaning; booking resumes after quality checks complete." }
+    };
+
+    (string label, string color, string textColor) Badge(string type) => type switch
+    {
+        "training" => ("Training", "bg-secondary", "text-white"),
+        "availability" => ("Availability", "bg-emerald-500", "text-white"),
+        "maintenance" => ("Maintenance", "bg-amber-500", "text-white"),
+        "highlight" => ("Highlight", "bg-accent", "text-white"),
+        _ => ("Update", "bg-slate-500", "text-white")
+    };
+}
+
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/assets/hero-bg.jpg')"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/80 to-accent/50"></div>
+
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-secondary/20 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style="animation-delay: 2s"></div>
+        <div class="absolute top-1/2 right-1/3 w-48 h-48 bg-white/10 rounded-full blur-2xl animate-float" style="animation-delay: 4s"></div>
+    </div>
+
+    <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 50px 50px"></div>
+
+    <div class="relative z-10 container mx-auto px-4 md:px-6 text-center text-white">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
+            <i data-lucide="sparkles" class="w-4 h-4 text-secondary"></i>
+            <span class="text-sm font-medium">Open Access - Advanced Analytics - Research Excellence</span>
+        </div>
+
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight animate-slide-up">ATS</h1>
+        <p class="text-2xl md:text-3xl text-white/90 font-semibold mb-6 animate-slide-up" style="animation-delay: 0.1s">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-emerald-300 to-teal-300">Analytical Testing Services Cell</span>
+        </p>
+
+        <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in" style="animation-delay: 0.2s">
+            From Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon - Empowering Innovation Through Precision Analysis. Access state-of-the-art instrumentation and expert characterization services at KBCNMU, Jalgaon. We bridge the gap between advanced research and actionable data.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in" style="animation-delay: 0.4s">
+            <a href="/instruments" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-secondary text-secondary-foreground shadow-lg hover:shadow-[0_0_40px_hsl(160_84%_39%/0.4)] hover:-translate-y-1 transition-all duration-300 h-16 rounded-xl px-10 text-lg group">
+                View Instruments
+                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <a href="/submit-request" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-2 border-white/30 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:border-white/50 h-16 rounded-xl px-10 text-lg">
+                Submit Sample Request
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto animate-fade-in" style="animation-delay: 0.6s">
+            @foreach (var stat in stats)
+            {
+                <div class="p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/15 transition-colors">
+                    <p class="text-3xl md:text-4xl font-bold text-secondary">@stat.Value</p>
+                    <p class="text-sm text-white/70 mt-1">@stat.Label</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
+            <div class="w-1 h-2 bg-white/50 rounded-full"></div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-gradient-to-b from-background to-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">Meet Our Leadership</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">University Leadership</h2>
+            <p class="text-muted-foreground max-w-2xl mx-auto">Distinguished leaders committed to excellence in education, research, and institutional advancement</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            @foreach (var leader in leaders)
+            {
+                <div class="group">
+                    <div class="overflow-visible border-0 bg-card hover:shadow-lg transition-shadow duration-300 h-full rounded-xl">
+                        <div class="flex justify-center pt-8 pb-4">
+                            <div class="relative w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 shadow-md ring-2 ring-background">
+                                @if (!string.IsNullOrEmpty(leader.Image))
+                                {
+                                    <img src="@leader.Image" alt="@leader.Name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                                }
+                                else
+                                {
+                                    <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
+                                        <p class="text-5xl sm:text-6xl font-bold text-primary/20">@leader.Name[0]</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="pt-6 pb-6 flex flex-col items-center text-center px-6">
+                            <h3 class="text-lg font-bold mb-2">@leader.Name</h3>
+                            <p class="text-sm text-primary font-semibold mb-4">@leader.Role</p>
+                            <div class="flex items-center gap-1 text-primary group-hover:gap-2 transition-all mt-auto">
+                                <span class="text-sm font-medium">View Profile</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section id="about" class="py-24 bg-background relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-secondary/5 to-transparent rounded-bl-full"></div>
+    <div class="absolute bottom-0 left-0 w-1/4 h-1/3 bg-gradient-to-tr from-accent/5 to-transparent rounded-tr-full"></div>
+
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">About Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">Discover ATS</h2>
+            <p class="text-muted-foreground text-lg max-w-2xl mx-auto">A premier analytical testing facility empowering breakthrough research through advanced instrumentation and expert support.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="target" class="w-7 h-7 text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Who We Are</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">We are a state-of-the-art analytical facility operating under KBCNMU, committed to delivering high-precision instrumentation and characterization services. Our facility serves researchers, academicians, and industry professionals across India, enabling reliable data generation, advanced analysis, and impactful scientific outcomes through world-class infrastructure and technical expertise.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0.1s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="flask-conical" class="w-7 h-7 text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">What We Do</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">We provide high-precision analytical and characterization solutions across a broad spectrum of scientific disciplines. Our facility supports advanced research in materials science, chemistry, biology, and physics, delivering the critical data and insights needed to drive innovation and technical breakthroughs.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0.2s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="users" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Who Can Use ATS</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">ATS is accessible to university researchers, external academic institutions, R&D laboratories, and industry collaborators. We actively support interdisciplinary research and industrial problem-solving, with subsidized access and special provisions available for students and academic collaborations to promote inclusive and high-quality research.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0.3s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="rocket" class="w-7 h-7 text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Vision</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">To lead as a center of excellence in analytical characterization, providing seamless access to advanced instrumentation for both academic researchers and industrial partners. We are committed to supporting local industry through specialized sample analysis, fostering transformative research, and nurturing the scientific talent of tomorrow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="instruments" class="py-24 bg-muted/50 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0); background-size: 32px 32px"></div>
+
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">Our Instruments</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">State-of-the-Art Equipment</h2>
+            <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Explore our comprehensive range of advanced analytical instruments designed to meet diverse research needs.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            @foreach (var instrument in instruments)
+            {
+                <div class="group overflow-hidden border-0 bg-card rounded-xl shadow-sm">
+                    <div class="relative h-44 overflow-hidden bg-gradient-to-br from-primary/5 to-secondary/5">
+                        @if (!string.IsNullOrEmpty(instrument.Image))
+                        {
+                            <img src="@instrument.Image" alt="@instrument.Name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        }
+                        <div class="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-semibold">@instrument.Name</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-6 pb-6 px-6">
+                        <h3 class="font-bold text-lg mb-1">@instrument.Name</h3>
+                        <div class="flex items-center gap-3 mt-4">
+                            <a href="/instruments/@instrument.Id" class="flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg hover:-translate-y-0.5 h-11 px-6 py-2">
+                                View details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="/instruments" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground h-11 px-6 py-2">
+                View All Instruments
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="py-24 bg-background relative overflow-hidden">
+    <div class="absolute top-1/2 -translate-y-1/2 -left-48 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/4 -right-48 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-semibold mb-4">Our Services</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">How to Avail Services</h2>
+            <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Choose the access category that best fits your research needs. We offer tailored solutions for every type of user.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            @foreach (var service in services)
+            {
+                <div class="group overflow-hidden border-0 bg-card hover:shadow-lg transition-all duration-300 h-full flex flex-col rounded-xl">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold">@service.Name</h3>
+                        <p class="text-sm text-muted-foreground mt-1">@service.Category</p>
+                        <p class="text-sm text-muted-foreground leading-relaxed mt-4">@service.Summary</p>
+                    </div>
+                    <div class="mt-auto p-6 pt-0">
+                        <a href="/services/@service.Id" class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg hover:-translate-y-0.5 h-11 px-6 py-2">
+                            View Details
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-gradient-to-br from-primary via-primary/95 to-accent/80 relative overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-secondary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+        <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent animate-[gradient_15s_ease_infinite]"></div>
+    </div>
+
+    <div class="absolute inset-0 opacity-10" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 40px 40px"></div>
+
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-white space-y-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-secondary"></i>
+                    <span class="text-sm font-medium">Official ATS Guidance</span>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">Guided Instrument<br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-emerald-300">Assistance</span></h2>
+
+                <div class="space-y-4 max-w-xl">
+                    <div class="flex items-center gap-3 text-white/90 animate-[fadeSlideIn_0.6s_ease-out_forwards] opacity-0" style="animation-delay: 0ms">
+                        <div class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
+                            <i data-lucide="clipboard-check" class="w-4 h-4 text-secondary"></i>
+                        </div>
+                        <span class="text-base font-medium">Instrument selection guidance</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90 animate-[fadeSlideIn_0.6s_ease-out_forwards] opacity-0" style="animation-delay: 100ms">
+                        <div class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
+                            <i data-lucide="file-text" class="w-4 h-4 text-secondary"></i>
+                        </div>
+                        <span class="text-base font-medium">Sample preparation rules</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90 animate-[fadeSlideIn_0.6s_ease-out_forwards] opacity-0" style="animation-delay: 200ms">
+                        <div class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
+                            <i data-lucide="dollar-sign" class="w-4 h-4 text-secondary"></i>
+                        </div>
+                        <span class="text-base font-medium">Official tariffs &amp; booking</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white/90 animate-[fadeSlideIn_0.6s_ease-out_forwards] opacity-0" style="animation-delay: 300ms">
+                        <div class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0">
+                            <i data-lucide="shield" class="w-4 h-4 text-secondary"></i>
+                        </div>
+                        <span class="text-base font-medium">Policies &amp; procedures</span>
+                    </div>
+                </div>
+
+                <a href="#" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-secondary text-secondary-foreground shadow-lg hover:shadow-[0_0_40px_hsl(160_84%_39%/0.4)] hover:-translate-y-1 transition-all duration-300 h-14 rounded-xl px-8 text-base mt-6">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    Get Guided Help
+                </a>
+            </div>
+
+            <div class="relative">
+                <div class="animate-[float_6s_ease-in-out_infinite] hover:scale-105 transition-transform duration-500">
+                    <div class="bg-card rounded-3xl shadow-2xl overflow-hidden max-w-md mx-auto border border-border/50 relative">
+                        <div class="absolute -inset-1 bg-gradient-to-br from-secondary/30 via-accent/20 to-primary/30 rounded-3xl blur-xl opacity-75"></div>
+                        <div class="relative bg-card rounded-3xl overflow-hidden">
+                            <div class="bg-gradient-to-r from-primary to-accent p-4 flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                                    <i data-lucide="bot" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white">ATS Guided Assistant</p>
+                                    <p class="text-xs text-white/70 flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>Ready to guide</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 space-y-4 bg-muted/50 min-h-[300px]">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+                                        <i data-lucide="bot" class="w-4 h-4 text-primary-foreground"></i>
+                                    </div>
+                                    <div class="bg-card rounded-2xl rounded-tl-sm p-4 shadow-sm max-w-[80%]">
+                                        <p class="text-sm">Welcome to ATS guidance. I can help you with:</p>
+                                        <div class="flex flex-wrap gap-2 mt-3">
+                                            <span class="px-3 py-1 rounded-full bg-muted text-xs font-medium">Instruments</span>
+                                            <span class="px-3 py-1 rounded-full bg-muted text-xs font-medium">Tariffs</span>
+                                            <span class="px-3 py-1 rounded-full bg-muted text-xs font-medium">Booking</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3 justify-end">
+                                    <div class="bg-primary text-primary-foreground rounded-2xl rounded-tr-sm p-4 max-w-[80%]">
+                                        <p class="text-sm">What are the sample requirements for FE-SEM analysis?</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+                                        <i data-lucide="bot" class="w-4 h-4 text-primary-foreground"></i>
+                                    </div>
+                                    <div class="bg-card rounded-2xl rounded-tl-sm p-4 shadow-sm">
+                                        <div class="flex gap-1">
+                                            <span class="w-2 h-2 rounded-full bg-muted-foreground/40 animate-bounce"></span>
+                                            <span class="w-2 h-2 rounded-full bg-muted-foreground/40 animate-bounce" style="animation-delay: 0.2s"></span>
+                                            <span class="w-2 h-2 rounded-full bg-muted-foreground/40 animate-bounce" style="animation-delay: 0.4s"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-4 border-t border-border bg-card">
+                                <div class="flex items-center gap-3">
+                                    <input type="text" placeholder="Type your question..." class="flex-1 bg-muted rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/20" disabled />
+                                    <button class="w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center hover:bg-primary/90 transition-colors">
+                                        <i data-lucide="send" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-4 -right-4 w-24 h-24 bg-secondary/40 rounded-full blur-2xl animate-pulse"></div>
+                <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-accent/40 rounded-full blur-2xl animate-pulse" style="animation-delay: 1.5s"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="updates" class="py-24 bg-muted/50 relative">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">Stay Updated</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">Facility Updates &amp; Instrument Highlights</h2>
+            <p class="text-muted-foreground text-lg max-w-2xl mx-auto">Latest updates on instrument training, availability, maintenance, and facility highlights.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            @foreach (var update in updates)
+            {
+                var badge = Badge(update.Type);
+                <div class="group overflow-hidden border-0 bg-card hover:shadow-xl transition-all duration-300 rounded-xl">
+                    <div class="p-6 space-y-4">
+                        <div class="flex items-center gap-2">
+                            <div class="px-3 py-1.5 rounded-full @badge.color @badge.textColor text-xs font-semibold flex items-center gap-2">
+                                <i data-lucide="zap" class="w-4 h-4"></i>
+                                @badge.label
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">@update.Title</h3>
+                        <p class="text-xs text-muted-foreground font-medium">@update.Instrument</p>
+                        <p class="text-base leading-relaxed text-muted-foreground">@update.Short</p>
+                        <div class="pt-2">
+                            <button type="button" class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-muted hover:text-foreground h-11 px-6 py-2" data-update-id="@update.Id" data-update-title="@update.Title" data-update-detail="@update.Detail" data-update-instrument="@update.Instrument" data-update-badge-label="@badge.label" data-update-badge-color="@badge.color" data-update-badge-text="@badge.textColor">
+                                Read More
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div id="news-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="bg-card rounded-2xl max-w-2xl w-full mx-4 shadow-2xl border border-border relative">
+            <button type="button" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-muted text-foreground hover:bg-muted/80 flex items-center justify-center" data-close-modal>
+                <span aria-hidden="true">x</span>
+            </button>
+            <div class="p-6 space-y-4">
+                <div class="flex items-center gap-2">
+                    <div id="news-modal-badge" class="px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2"></div>
+                </div>
+                <h3 id="news-modal-title" class="text-2xl font-bold"></h3>
+                <p id="news-modal-instrument" class="text-sm text-muted-foreground font-medium"></p>
+                <div id="news-modal-detail" class="text-base leading-relaxed text-foreground/80"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    (function () {
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+
+        const modal = document.getElementById('news-modal');
+        const titleEl = document.getElementById('news-modal-title');
+        const detailEl = document.getElementById('news-modal-detail');
+        const instrumentEl = document.getElementById('news-modal-instrument');
+        const badgeEl = document.getElementById('news-modal-badge');
+        const closeButtons = modal ? modal.querySelectorAll('[data-close-modal]') : [];
+
+        document.querySelectorAll('[data-update-id]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                if (!modal || !titleEl || !detailEl || !instrumentEl || !badgeEl) return;
+                const label = btn.getAttribute('data-update-badge-label') || '';
+                const color = btn.getAttribute('data-update-badge-color') || '';
+                const text = btn.getAttribute('data-update-badge-text') || '';
+                badgeEl.className = `px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2 ${color} ${text}`;
+                badgeEl.textContent = label;
+                titleEl.textContent = btn.getAttribute('data-update-title') || '';
+                instrumentEl.textContent = btn.getAttribute('data-update-instrument') || '';
+                detailEl.textContent = btn.getAttribute('data-update-detail') || '';
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            });
+        });
+
+        closeButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                modal?.classList.add('hidden');
+                modal?.classList.remove('flex');
+            });
+        });
+
+        modal?.addEventListener('click', (ev) => {
+            if (ev.target === modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        });
+    })();
+</script>
+

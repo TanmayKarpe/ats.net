@@ -1,0 +1,306 @@
+{
+  "timestamp": "2025-12-11T20:15:00Z",
+  "repository": "Tannykk23/ATS-WEBSITE-01",
+  "branch": "chore/repo-diagnostics",
+  "diagnosticRun": {
+    "totalSourceFiles": 99,
+    "languages": ["TypeScript", "TSX", "JavaScript", "CSS"]
+  },
+  "syntaxErrors": [
+    {
+      "severity": "error",
+      "file": "src/__tests__/header.test.tsx",
+      "line": 74,
+      "column": 47,
+      "message": "Unexpected any. Specify a different type",
+      "rule": "@typescript-eslint/no-explicit-any",
+      "code": "any[]"
+    }
+  ],
+  "lintWarnings": [
+    {
+      "severity": "warning",
+      "file": "src/components/ui/badge.tsx",
+      "line": 29,
+      "column": 17,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/button.tsx",
+      "line": 52,
+      "column": 18,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/form.tsx",
+      "line": 129,
+      "column": 10,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/navigation-menu.tsx",
+      "line": 111,
+      "column": 3,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/sidebar.tsx",
+      "line": 636,
+      "column": 3,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/sonner.tsx",
+      "line": 27,
+      "column": 19,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/textarea.tsx",
+      "line": 5,
+      "column": 18,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/components/ui/toggle.tsx",
+      "line": 37,
+      "column": 18,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    },
+    {
+      "severity": "warning",
+      "file": "src/contexts/AdminAuthContext.tsx",
+      "line": 77,
+      "column": 14,
+      "message": "Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components",
+      "rule": "react-refresh/only-export-components"
+    }
+  ],
+  "lintErrors": [
+    {
+      "severity": "error",
+      "file": "src/components/instruments/InstrumentCard.tsx",
+      "line": 15,
+      "column": 11,
+      "message": "Definition for rule '@next/next/no-img-element' was not found",
+      "rule": "@next/next/no-img-element"
+    },
+    {
+      "severity": "error",
+      "file": "src/components/ui/command.tsx",
+      "line": 24,
+      "column": 11,
+      "message": "An interface declaring no members is equivalent to its supertype",
+      "rule": "@typescript-eslint/no-empty-object-type"
+    },
+    {
+      "severity": "error",
+      "file": "src/components/ui/textarea.tsx",
+      "line": 5,
+      "column": 18,
+      "message": "An interface declaring no members is equivalent to its supertype",
+      "rule": "@typescript-eslint/no-empty-object-type"
+    },
+    {
+      "severity": "error",
+      "file": "tailwind.config.ts",
+      "line": 97,
+      "column": 13,
+      "message": "A `require()` style import is forbidden",
+      "rule": "@typescript-eslint/no-require-imports"
+    }
+  ],
+  "typeCheckErrors": [],
+  "buildErrors": [],
+  "buildWarnings": [
+    {
+      "severity": "warning",
+      "source": "vite:css",
+      "message": "@import must precede all other statements (besides @charset or empty @layer)",
+      "file": "src/index.css",
+      "line": 5,
+      "details": "Google Fonts @import statement must come before Tailwind @tailwind directives"
+    }
+  ],
+  "testResults": {
+    "available": false,
+    "reason": "No test script configured in package.json",
+    "recommendation": "Add 'vitest' dev dependency and configure test script"
+  },
+  "securityFindings": {
+    "vulnerabilities": {
+      "critical": 0,
+      "high": 0,
+      "moderate": 0,
+      "low": 0,
+      "total": 0
+    },
+    "hardcodedSecrets": [],
+    "suspiciousPatterns": []
+  },
+  "routingConfiguration": {
+    "file": "src/App.tsx",
+    "browserRouterPresent": true,
+    "browserRouterLines": "32-64",
+    "adminAuthProviderPresent": true,
+    "adminAuthProviderLines": "33-63",
+    "providerOrder": "BrowserRouter wraps AdminAuthProvider",
+    "routesProtected": true,
+    "routes": [
+      {
+        "path": "/",
+        "protected": false,
+        "layout": "RootLayout"
+      },
+      {
+        "path": "/auth",
+        "protected": false,
+        "layout": "none"
+      },
+      {
+        "path": "/admin/login",
+        "protected": false,
+        "layout": "none"
+      },
+      {
+        "path": "/admin",
+        "protected": true,
+        "protectionMethod": "RequireAdmin wrapper",
+        "redirectTo": "/admin/login"
+      }
+    ]
+  },
+  "devServerStatus": {
+    "startupTime": "222ms",
+    "port": 8080,
+    "running": true,
+    "errors": false,
+    "jsxParseErrors": false,
+    "cssWarnings": 1
+  },
+  "httpChecks": {
+    "timestamp": "2025-12-11T20:15:30Z",
+    "endpoints": [
+      {
+        "route": "/",
+        "status": "HTML served",
+        "time": "<100ms"
+      },
+      {
+        "route": "/admin/login",
+        "status": "HTML served",
+        "time": "<100ms"
+      },
+      {
+        "route": "/admin",
+        "status": "HTML served",
+        "time": "<100ms"
+      }
+    ]
+  },
+  "dependencyAnalysis": {
+    "topDependencies": [
+      {
+        "name": "@supabase/supabase-js",
+        "version": "^2.86.2",
+        "type": "dependency",
+        "vulnerabilities": 0
+      },
+      {
+        "name": "@tanstack/react-query",
+        "version": "^5.83.0",
+        "type": "dependency",
+        "vulnerabilities": 0
+      },
+      {
+        "name": "react",
+        "version": "^18.3.1",
+        "type": "dependency",
+        "vulnerabilities": 0
+      },
+      {
+        "name": "react-dom",
+        "version": "^18.3.1",
+        "type": "dependency",
+        "vulnerabilities": 0
+      },
+      {
+        "name": "react-router-dom",
+        "version": "^6.30.0",
+        "type": "dependency",
+        "vulnerabilities": 0
+      },
+      {
+        "name": "vite",
+        "version": "^7.2.7",
+        "type": "devDependency",
+        "vulnerabilities": 0
+      }
+    ],
+    "vulnSummary": "No known vulnerabilities found in npm audit"
+  },
+  "assetAnalysis": {
+    "imagesInPublic": ["robots.txt"],
+    "imageReferencesInCode": [
+      "instrument-xrd.jpg",
+      "instrument-ftir.jpg",
+      "instrument-uvvis.jpg",
+      "instrument-fesem.jpg",
+      "instrument-gcms.jpg",
+      "instrument-nmr.jpg",
+      "hero-bg.jpg"
+    ],
+    "missingAssets": [],
+    "largeBase64Strings": []
+  },
+  "configAnalysis": {
+    "viteConfig": {
+      "file": "vite.config.ts",
+      "server": {
+        "host": "::",
+        "port": 8080
+      },
+      "plugins": ["@vitejs/plugin-react-swc"],
+      "aliasesConfigured": true
+    },
+    "eslintConfig": {
+      "file": ".eslintrc.js",
+      "present": true
+    },
+    "ciWorkflows": {
+      "github": false,
+      "netlify": false,
+      "vercel": false
+    },
+    "testConfigured": false
+  },
+  "summary": {
+    "overallHealth": "GOOD - Builds successfully, dev server runs, no runtime errors",
+    "blockingIssues": 0,
+    "criticalIssues": 0,
+    "majorIssues": 4,
+    "minorIssues": 9,
+    "recommendations": [
+      "Fix CSS import order in index.css (move @import before @tailwind)",
+      "Remove @next/next eslint rules not applicable to this React project",
+      "Add test configuration (vitest recommended)",
+      "Fix type errors in shadcn/ui components (empty interface types)",
+      "Fix any type annotation in header.test.tsx"
+    ]
+  }
+}

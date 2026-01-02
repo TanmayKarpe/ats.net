@@ -1,0 +1,183 @@
+﻿@{
+    var navItems = new[]
+    {
+        new { Label = "Home", Href = "/" },
+        new { Label = "About", Href = "/about" },
+        new { Label = "Instruments", Href = "/instruments" },
+        new { Label = "Services", Href = "/services" },
+        new { Label = "Contact", Href = "/contact" }
+    };
+
+    var footerQuickLinks = new[]
+    {
+        new { Label = "Sample Request Form", Href = "/" },
+        new { Label = "Tariff Sheet", Href = "/" },
+        new { Label = "Usage Policy", Href = "/" },
+        new { Label = "Downloads", Href = "/" }
+    };
+
+    var footerInstruments = new[]
+    {
+        new { Label = "FE-SEM", Href = "/instruments" },
+        new { Label = "FTIR Spectrometer", Href = "/instruments" },
+        new { Label = "XRD System", Href = "/instruments" },
+        new { Label = "UV-Vis Spectrophotometer", Href = "/instruments" }
+    };
+
+    var baseTitle = "ATS – Analytical Testing Services | Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon";
+    var pageTitle = ViewData["Title"] as string;
+    var fullTitle = string.IsNullOrWhiteSpace(pageTitle) ? baseTitle : $"{pageTitle} | ATS – Analytical Testing Services";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@fullTitle</title>
+    <meta name="description" content="ATS – Analytical Testing Services at Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon provides advanced analytical and characterization services with state-of-the-art instruments including FE-SEM, XRD, FTIR, UV-Vis, GC-MS and more." />
+    <meta name="keywords" content="ATS, analytical testing, analytical instruments, Jalgaon, FE-SEM, XRD, FTIR, research facility, characterization services" />
+    <meta name="author" content="Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon" />
+    <meta property="og:title" content="ATS – Analytical Testing Services | Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon" />
+    <meta property="og:description" content="Advanced analytical and characterization services with state-of-the-art instruments. Open access facility for research excellence." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@@KBCNMUJalgaon" />
+    <meta name="twitter:title" content="ATS – Analytical Testing Services" />
+    <meta name="twitter:description" content="Advanced analytical and characterization services at Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <link rel="canonical" href="https://ats.nmu.ac.in" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/dist-assets/index-CqQFRhqv.css" />
+    <link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body class="min-h-screen bg-background text-foreground flex flex-col">
+    <header class="fixed top-0 left-0 right-0 z-50 transition-colors duration-200 backdrop-blur-lg bg-card/70 shadow-md">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex items-center justify-between py-4">
+                <a href="/" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all duration-300 bg-primary text-primary-foreground">ATS</div>
+                    <div class="hidden sm:block">
+                        <p class="font-bold text-sm transition-colors duration-300 text-foreground">Analytical Testing Services</p>
+                        <p class="text-xs transition-colors duration-300 text-muted-foreground">Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon</p>
+                    </div>
+                </a>
+                <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded-lg transition-colors text-foreground" aria-label="Toggle navigation">☰</button>
+                <nav class="hidden lg:flex items-center gap-6">
+                    @foreach (var item in navItems)
+                    {
+                        <a href="@item.Href" class="px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-muted text-foreground hover:text-primary">@item.Label</a>
+                    }
+                    <a href="/admin/login" class="px-3 py-2 text-xs text-muted-foreground hover:text-primary transition-colors">Admin</a>
+                </nav>
+            </div>
+            <nav id="mobile-menu" class="lg:hidden hidden pb-4 border-t border-white/10">
+                <div class="flex flex-col gap-2 mt-4">
+                    @foreach (var item in navItems)
+                    {
+                        <a href="@item.Href" class="px-4 py-2 rounded-lg text-sm font-medium transition-all text-foreground hover:bg-muted">@item.Label</a>
+                    }
+                    <a href="/admin/login" class="px-4 py-2 text-xs text-muted-foreground hover:text-primary transition-colors">Admin</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="flex-1 pt-20">
+        @RenderBody()
+    </main>
+
+    <footer class="bg-primary text-primary-foreground mt-16">
+        <div class="container mx-auto px-4 md:px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-secondary text-secondary-foreground flex items-center justify-center font-bold">ATS</div>
+                        <div>
+                            <p class="font-bold">ATS - KBCNMU</p>
+                            <p class="text-sm text-primary-foreground/70">Jalgaon</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-primary-foreground/80 leading-relaxed">Analytical Testing Services providing world-class analytical and characterization services for research and industry.</p>
+                    <div class="flex gap-3 pt-2">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors" aria-label="Facebook">F</a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors" aria-label="Twitter">T</a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors" aria-label="LinkedIn">in</a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center hover:bg-secondary hover:text-secondary-foreground transition-colors" aria-label="YouTube">▶</a>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg">Quick Links</h3>
+                    <ul class="space-y-3">
+                        @foreach (var link in footerQuickLinks)
+                        {
+                            <li>
+                                <a href="@link.Href" class="text-sm text-primary-foreground/80 hover:text-secondary transition-colors flex items-center gap-2 group">↗ @link.Label</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg">Instruments</h3>
+                    <ul class="space-y-3">
+                        @foreach (var link in footerInstruments)
+                        {
+                            <li>
+                                <a href="@link.Href" class="text-sm text-primary-foreground/80 hover:text-secondary transition-colors flex items-center gap-2 group">↗ @link.Label</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="space-y-4">
+                    <h3 class="font-bold text-lg">Contact Us</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="text-secondary mt-0.5 shrink-0">📍</span>
+                            <p class="text-sm text-primary-foreground/80">Kavayitri Bahinabai Chaudhari North Maharashtra University, Jalgaon, Maharashtra – 425001</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-secondary shrink-0">✉</span>
+                            <a href="mailto:ats@@nmu.ac.in?subject=ATS%20Enquiry" class="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">ats@@nmu.ac.in</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-secondary shrink-0">☎</span>
+                            <a href="tel:+912572257451" class="text-sm text-primary-foreground/80 hover:text-secondary transition-colors">+91 257 2257451</a>
+                        </div>
+                        <div class="pt-4 border-t border-white/20">
+                            <a href="/auth" class="text-sm text-primary-foreground/80 hover:text-secondary transition-colors flex items-center gap-2 group">↗ User Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10">
+            <div class="container mx-auto px-4 md:px-6 py-6">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-sm text-primary-foreground/60 text-center md:text-left">© 2025 ATS - KBCNMU Jalgaon. All rights reserved.</p>
+                    <div class="flex items-center gap-6">
+                        <a href="#" class="text-sm text-primary-foreground/60 hover:text-secondary transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-sm text-primary-foreground/60 hover:text-secondary transition-colors">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (toggleButton && mobileMenu) {
+            toggleButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

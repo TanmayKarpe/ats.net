@@ -1,0 +1,128 @@
+@{
+    ViewData["Title"] = "About";
+
+    var leaders = new[]
+    {
+        new { Id = "governor", Name = "Shri Acharya Devvrat", Role = "Governor of Maharashtra & Gujarat (Chancellor)", Image = "/governor.png" },
+        new { Id = "vice-chancellor", Name = "Prof. V. L. Maheshwari", Role = "Vice-Chancellor", Image = "/vice-chancellor.png" },
+        new { Id = "pro-vice-chancellor", Name = "Prof. S. T. Ingle", Role = "Pro-Vice-Chancellor", Image = "/pro-vc.png" },
+        new { Id = "registrar", Name = "Dr. Vinod Patil", Role = "Registrar", Image = "/registrar.png" }
+    };
+}
+
+<div class="py-12 bg-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">About ATS</h1>
+        <p class="text-xl text-muted-foreground">Learn more about our facility, mission, and the team behind it.</p>
+    </div>
+</div>
+
+<section class="py-20 bg-gradient-to-b from-background to-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">Meet Our Leadership</span>
+            <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-4">University Leadership</h2>
+            <p class="text-muted-foreground max-w-2xl mx-auto">Distinguished leaders committed to excellence in education, research, and institutional advancement</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            @foreach (var leader in leaders)
+            {
+                <div class="group">
+                    <div class="overflow-visible border-0 bg-card hover:shadow-lg transition-shadow duration-300 h-full rounded-xl">
+                        <div class="flex justify-center pt-8 pb-4">
+                            <div class="relative w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 shadow-md ring-2 ring-background">
+                                @if (!string.IsNullOrEmpty(leader.Image))
+                                {
+                                    <img src="@leader.Image" alt="@leader.Name" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                                }
+                                else
+                                {
+                                    <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20">
+                                        <p class="text-5xl sm:text-6xl font-bold text-primary/20">@leader.Name[0]</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="pt-6 pb-6 flex flex-col items-center text-center px-6">
+                            <h3 class="text-lg font-bold mb-2">@leader.Name</h3>
+                            <p class="text-sm text-primary font-semibold mb-4">@leader.Role</p>
+                            <div class="flex items-center gap-1 text-primary group-hover:gap-2 transition-all mt-auto">
+                                <span class="text-sm font-medium">View Profile</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<section id="about" class="py-24 bg-background relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/3 h-1/2 bg-gradient-to-bl from-secondary/5 to-transparent rounded-bl-full"></div>
+    <div class="absolute bottom-0 left-0 w-1/4 h-1/3 bg-gradient-to-tr from-accent/5 to-transparent rounded-tr-full"></div>
+
+    <div class="container mx-auto px-4 md:px-6 relative z-10">
+        <div class="text-center mb-16">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">About Us</span>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">Discover ATS</h2>
+            <p class="text-muted-foreground text-lg max-w-2xl mx-auto">A premier analytical testing facility empowering breakthrough research through advanced instrumentation and expert support.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="target" class="w-7 h-7 text-secondary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Who We Are</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">We are a state-of-the-art analytical facility operating under KBCNMU, committed to delivering high-precision instrumentation and characterization services. Our facility serves researchers, academicians, and industry professionals across India, enabling reliable data generation, advanced analysis, and impactful scientific outcomes through world-class infrastructure and technical expertise.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0.1s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="flask-conical" class="w-7 h-7 text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">What We Do</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">We provide high-precision analytical and characterization solutions across a broad spectrum of scientific disciplines. Our facility supports advanced research in materials science, chemistry, biology, and physics, delivering the critical data and insights needed to drive innovation and technical breakthroughs.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0.2s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="users" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Who Can Use ATS</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">ATS is accessible to university researchers, external academic institutions, R&amp;D laboratories, and industry collaborators. We actively support interdisciplinary research and industrial problem-solving, with subsidized access and special provisions available for students and academic collaborations to promote inclusive and high-quality research.</p>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden border-0 bg-card shadow-lg hover:shadow-xl rounded-xl" style="animation-delay: 0.3s">
+                <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative p-6">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i data-lucide="rocket" class="w-7 h-7 text-emerald-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Our Vision</h3>
+                    <p class="text-base leading-relaxed text-muted-foreground">To lead as a center of excellence in analytical characterization, providing seamless access to advanced instrumentation for both academic researchers and industrial partners. We are committed to supporting local industry through specialized sample analysis, fostering transformative research, and nurturing the scientific talent of tomorrow.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    </script>
+}
