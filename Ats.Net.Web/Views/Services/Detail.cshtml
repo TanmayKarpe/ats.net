@@ -1,0 +1,60 @@
+@model Ats.Net.Web.Services.Service
+@{
+    ViewData["Title"] = Model?.Title + " - ATS KBCNMU";
+}
+
+<div class="py-12 bg-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+        <nav class="flex mb-4 text-sm">
+            <a href="/" class="text-primary hover:underline">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/services" class="text-primary hover:underline">Services</a>
+            <span class="mx-2">/</span>
+            <span class="text-muted-foreground">@Model?.Title</span>
+        </nav>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">@Model?.Title</h1>
+        <p class="text-xl text-muted-foreground">@Model?.Description</p>
+    </div>
+</div>
+
+<div class="py-16 bg-background">
+    <div class="container mx-auto px-4 md:px-6 max-w-4xl">
+        @if (Model != null)
+        {
+            <!-- Features Section -->
+            @if (Model.Features != null && Model.Features.Any())
+            {
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6">Key Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @foreach (var feature in Model.Features)
+                        {
+                            <div class="flex items-start gap-3 rounded-lg border bg-card p-4">
+                                <i data-lucide="check-circle" class="text-primary shrink-0 mt-0.5" style="width: 20px; height: 20px;"></i>
+                                <span class="text-sm">@feature</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <!-- Contact Information -->
+            <div class="rounded-lg border bg-muted/50 p-6">
+                <h3 class="text-lg font-semibold mb-4">Ready to get started?</h3>
+                <p class="text-sm text-muted-foreground mb-4">
+                    Contact our team to discuss your specific needs and get a customized quote.
+                </p>
+                <a href="/contact" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                    Contact Us
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-12">
+                <p class="text-muted-foreground">Service not found.</p>
+                <a href="/services" class="text-primary hover:underline mt-4 inline-block">← Back to Services</a>
+            </div>
+        }
+    </div>
+</div>

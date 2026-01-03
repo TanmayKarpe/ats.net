@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ats.Net.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f4337cebc919f5a53bd41d270b124dff9d4fba4b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a3a1ff5094dce8a5aaad8ac05b50bf932c8bff6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ats.Net.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ats.Net.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

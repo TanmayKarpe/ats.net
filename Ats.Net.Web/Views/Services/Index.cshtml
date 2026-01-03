@@ -1,0 +1,47 @@
+@model List<Ats.Net.Web.Services.Service>
+@{
+    ViewData["Title"] = "Our Services - ATS KBCNMU";
+}
+
+<div class="py-12 bg-muted/30">
+    <div class="container mx-auto px-4 md:px-6">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
+        <p class="text-xl text-muted-foreground">Choose the access category that best fits your research needs.</p>
+    </div>
+</div>
+
+<div class="py-16 bg-background">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var service in Model)
+                {
+                    <div class="rounded-lg border bg-card text-card-foreground shadow-sm group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                        <div class="flex flex-col space-y-1.5 p-6">
+                            <h3 class="text-xl font-bold leading-none tracking-tight">@service.Title</h3>
+                            <p class="text-sm text-muted-foreground">Category</p>
+                        </div>
+                        <div class="p-6 pt-0 flex-1">
+                            <p class="text-sm text-muted-foreground leading-relaxed">@service.Description</p>
+                        </div>
+                        <div class="flex items-center p-6 pt-0">
+                            <a href="/services/@service.Id" class="w-full">
+                                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+                                    View Details
+                                    <i data-lucide="arrow-right" style="width: 16px; height: 16px; margin-left: 0.5rem;"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-span-1 lg:col-span-3 text-center py-12">
+                    <p class="text-muted-foreground">No services available at this time.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

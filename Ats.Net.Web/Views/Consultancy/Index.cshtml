@@ -1,0 +1,161 @@
+@model List<Ats.Net.Web.Services.Department>
+@{
+    ViewData["Title"] = "Consultancy Services - ATS KBCNMU";
+}
+
+<div class="max-w-5xl mx-auto py-12 px-4 md:px-6">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">Consultancy</h1>
+        <p class="mt-2 text-sm text-muted-foreground">
+            We provide consultancy services across our departments. Select a department to read details and contact the coordinator directly for consultancy requests.
+        </p>
+    </div>
+
+    <div class="mb-6 flex items-center gap-4">
+        <select id="departmentSelect" class="flex h-10 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-64">
+            <option value="">Select a department</option>
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var dept in Model)
+                {
+                    <option value="@dept.Slug">@dept.Name</option>
+                }
+            }
+        </select>
+        <div class="text-sm text-muted-foreground">Or browse the departments below</div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            @foreach (var dept in Model)
+            {
+                <div class="rounded-lg border bg-card text-card-foreground shadow-sm p-4" data-slug="@dept.Slug">
+                    <div class="flex flex-col h-full">
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h3 class="text-lg font-semibold">@dept.Name</h3>
+                                <p class="text-sm text-muted-foreground mt-1 line-clamp-3">@dept.Description</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex items-center justify-between gap-4">
+                            <div class="text-sm text-muted-foreground">
+                                <div class="font-medium">Coordinator</div>
+                                <div>@dept.CoordinatorEmail</div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" onclick="openContactDialog('@dept.Name', '@dept.CoordinatorEmail')">
+                                    <i data-lucide="mail" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                                    Contact
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="py-12">
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+                <div class="p-6 text-center">
+                    <h2 class="text-xl font-semibold">No consultancy departments available</h2>
+                    <p class="mt-2 text-sm text-muted-foreground">
+                        There are currently no departments listed for consultancy. Please check back later or contact our office for more information.
+                    </p>
+                    <div class="mt-4 flex items-center justify-center">
+                        <a href="/contact" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Contact Dialog -->
+<div id="contactDialog" class="fixed inset-0 z-50 hidden bg-background/80 backdrop-blur-sm">
+    <div class="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-full max-w-lg">
+        <div class="rounded-lg border bg-card text-card-foreground shadow-lg p-6">
+            <div class="mb-4">
+                <h2 class="text-lg font-semibold">Consultancy Enquiry</h2>
+                <p class="text-sm text-muted-foreground">Please provide your details so the department can get back to you.</p>
+            </div>
+
+            <div id="dialogError" class="hidden text-sm text-red-600 mb-4"></div>
+
+            <form id="enquiryForm" class="space-y-4">
+                <div>
+                    <label for="enquiryName" class="text-sm font-medium mb-2 block">Name</label>
+                    <input type="text" id="enquiryName" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Your full name">
+                </div>
+                <div>
+                    <label for="enquiryEmail" class="text-sm font-medium mb-2 block">Email</label>
+                    <input type="email" id="enquiryEmail" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="you@example.com">
+                </div>
+                <div>
+                    <label for="enquiryMessage" class="text-sm font-medium mb-2 block">Message</label>
+                    <textarea id="enquiryMessage" rows="4" class="w-full px-3 py-2 border border-input rounded-md bg-background text-sm"></textarea>
+                </div>
+            </form>
+
+            <div class="mt-6 flex justify-end gap-2">
+                <button type="button" onclick="closeContactDialog()" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+                    Cancel
+                </button>
+                <button type="button" onclick="submitEnquiry()" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
+                    Send Enquiry & Open Mail
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentDeptName = '';
+    let currentDeptEmail = '';
+
+    // Department selection handler
+    document.getElementById('departmentSelect')?.addEventListener('change', function(e) {
+        const slug = e.target.value;
+        if (slug) {
+            const card = document.querySelector(`[data-slug="${slug}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.classList.add('ring-2', 'ring-primary');
+                setTimeout(() => {
+                    card.classList.remove('ring-2', 'ring-primary');
+                }, 2000);
+            }
+        }
+    });
+
+    function openContactDialog(deptName, deptEmail) {
+        currentDeptName = deptName;
+        currentDeptEmail = deptEmail;
+        document.getElementById('enquiryMessage').value = `I would like to inquire about consultancy services for ${deptName}.`;
+        document.getElementById('contactDialog').classList.remove('hidden');
+    }
+
+    function closeContactDialog() {
+        document.getElementById('contactDialog').classList.add('hidden');
+        document.getElementById('enquiryForm').reset();
+        document.getElementById('dialogError').classList.add('hidden');
+    }
+
+    function submitEnquiry() {
+        const name = document.getElementById('enquiryName').value.trim();
+        const email = document.getElementById('enquiryEmail').value.trim();
+        const message = document.getElementById('enquiryMessage').value.trim();
+
+        const subject = encodeURIComponent(`Consultancy Inquiry - ${currentDeptName}`);
+        const body = encodeURIComponent(`Hello ${currentDeptName} team,\n\nMy name is ${name || '[Your Name]'} from [Organization].\n\n${message}\n\nPlease let me know the next steps and availability.\n\nBest regards,\n${name || ''}`);
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${currentDeptEmail}&cc=bhushan.food@gmail.com&su=${subject}&body=${body}`;
+        
+        closeContactDialog();
+        window.open(gmailUrl, '_blank', 'noopener');
+    }
+</script>

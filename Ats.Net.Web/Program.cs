@@ -1,9 +1,13 @@
 using Microsoft.Extensions.FileProviders;
+using Ats.Net.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register Supabase service with HttpClient
+builder.Services.AddHttpClient<SupabaseService>();
 
 var app = builder.Build();
 
